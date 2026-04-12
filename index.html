@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thai Basics 🇹🇭 – Learn Thai Alphabet & Vocabulary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f0f4ff;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --high: #2563eb;
+      --high-light: #dbeafe;
+      --high-mid: #93c5fd;
+      --mid: #059669;
+      --mid-light: #d1fae5;
+      --mid-mid: #6ee7b7;
+      --low: #d97706;
+      --low-light: #fef3c7;
+      --low-mid: #fcd34d;
+      --accent: #7c3aed;
+      --accent-light: #ede9fe;
+      --radius: 14px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.07);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.13);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+      color: #fff;
+      padding: 28px 24px 22px;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p  { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+
+    /* ── MAIN TABS ───────────────────────────────── */
+    .main-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .main-tab {
+      flex: 1;
+      max-width: 180px;
+      padding: 14px 10px;
+      border: none;
+      background: transparent;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .main-tab:hover { color: var(--text); background: #f8fafc; }
+    .main-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+    /* ── SECTIONS ────────────────────────────────── */
+    .section { display: none; padding: 24px 20px 60px; max-width: 1100px; margin: 0 auto; }
+    .section.active { display: block; }
+
+    /* ── CONSONANTS ──────────────────────────────── */
+    .class-info {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .class-info strong { color: var(--text); }
+
+    .class-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .class-tab {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .class-tab[data-class="high"] { background: var(--high-light); color: var(--high); border-color: var(--high-mid); }
+    .class-tab[data-class="mid"]  { background: var(--mid-light);  color: var(--mid);  border-color: var(--mid-mid); }
+    .class-tab[data-class="low"]  { background: var(--low-light);  color: var(--low);  border-color: var(--low-mid); }
+    .class-tab.active[data-class="high"] { background: var(--high); color: #fff; }
+    .class-tab.active[data-class="mid"]  { background: var(--mid);  color: #fff; }
+    .class-tab.active[data-class="low"]  { background: var(--low);  color: #fff; }
+
+    .consonant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .consonant-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px 14px 14px;
+      border: 2px solid transparent;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .consonant-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .consonant-card.high-card { border-color: var(--high-light); }
+    .consonant-card.mid-card  { border-color: var(--mid-light); }
+    .consonant-card.low-card  { border-color: var(--low-light); }
+    .consonant-card:hover.high-card { border-color: var(--high); }
+    .consonant-card:hover.mid-card  { border-color: var(--mid); }
+    .consonant-card:hover.low-card  { border-color: var(--low); }
+
+    .card-class-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .badge-high { background: var(--high-light); color: var(--high); }
+    .badge-mid  { background: var(--mid-light);  color: var(--mid); }
+    .badge-low  { background: var(--low-light);  color: var(--low); }
+
+    .consonant-char {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .consonant-name {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .consonant-rtgs {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .sounds-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .sound-pill {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+    }
+    .sound-pill span { font-weight: 600; color: var(--text); }
+    .example-row {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .example-emoji { font-size: 1.5rem; }
+    .example-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .example-text { flex: 1; }
+    .example-thai {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      display: block;
+    }
+    .example-meaning {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .speak-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .speak-btn:hover { transform: scale(1.15); }
+    .speak-btn.high-btn { background: var(--high-light); color: var(--high); }
+    .speak-btn.mid-btn  { background: var(--mid-light);  color: var(--mid); }
+    .speak-btn.low-btn  { background: var(--low-light);  color: var(--low); }
+
+    .obsolete-tag {
+      position: absolute;
+      top: 8px; right: 8px;
+      font-size: 0.6rem;
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .less-common-tag {
+      position: absolute;
+      top: 8px; right: 8px;
+      font-size: 0.6rem;
+      background: #f5f3ff;
+      color: #6d28d9;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ── VOWELS ──────────────────────────────────── */
+    .vowel-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 20px 0 12px;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+    .vowel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .vowel-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 14px 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .vowel-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+    .vowel-char {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .vowel-rtgs {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .vowel-type-pill {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .vowel-type-pill.short { background: #fef3c7; color: #92400e; }
+    .vowel-type-pill.long  { background: #dbeafe; color: #1d4ed8; }
+    .vowel-type-pill.special { background: #f3e8ff; color: #6b21a8; }
+    .vowel-example {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    /* ── FLASHCARDS ──────────────────────────────── */
+    .fc-header {
+      background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .fc-header h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+    .fc-header p  { font-size: 0.85rem; opacity: 0.85; margin-bottom: 14px; }
+    .progress-bar-bg {
+      background: rgba(255,255,255,0.25);
+      border-radius: 999px;
+      height: 8px;
+      margin-bottom: 8px;
+    }
+    .progress-bar-fill {
+      background: #fff;
+      border-radius: 999px;
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+    .progress-text { font-size: 0.78rem; opacity: 0.85; }
+
+    .fc-wrapper {
+      perspective: 1000px;
+      margin: 0 auto 22px;
+      max-width: 440px;
+      height: 300px;
+    }
+    .fc-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+    }
+    .fc-inner.flipped { transform: rotateY(180deg); }
+    .fc-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-shadow: var(--shadow-hover);
+    }
+    .fc-front {
+      background: var(--surface);
+      border: 2px solid var(--high-light);
+    }
+    .fc-back {
+      background: linear-gradient(135deg, #eff6ff, #ede9fe);
+      border: 2px solid var(--accent);
+      transform: rotateY(180deg);
+    }
+    .fc-emoji { font-size: 3.5rem; margin-bottom: 14px; }
+    .fc-thai {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .fc-hint { font-size: 0.8rem; color: var(--text-muted); }
+    .fc-rtgs {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .fc-meaning {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .fc-consonant-used {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .fc-consonant-used span {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--high);
+    }
+
+    .tap-hint {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 18px;
+    }
+
+    .fc-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .fc-btn {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fc-btn:hover { transform: translateY(-2px); }
+    .btn-prev   { background: #f1f5f9; color: var(--text); border-color: var(--border); }
+    .btn-next   { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+    .btn-known  { background: #dcfce7; color: #166534; border-color: #86efac; }
+    .btn-review { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .btn-speak  { background: var(--high-light); color: var(--high); border-color: var(--high-mid); }
+    .btn-restart { background: var(--accent-light); color: var(--accent); border-color: var(--accent); font-size: 0.82rem; margin: 12px auto 0; display: block; padding: 8px 18px; border-radius: 999px; cursor: pointer; border-width: 2px; font-weight: 600; }
+    .btn-restart:hover { transform: translateY(-1px); }
+
+    .word-counter {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 14px;
+    }
+    .learned-tag {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .session-complete {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .session-complete .big-emoji { font-size: 3rem; margin-bottom: 12px; }
+    .session-complete h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .session-complete p  { color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem; }
+
+    /* ── VOWEL PAGE LAYOUT ───────────────────────── */
+    .vowel-intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── TONES TAB ───────────────────────────────── */
+    .tones-intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .tones-intro strong { color: var(--text); }
+    .tones-block-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 28px 0 14px;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    .tone-five-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .tone-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tone-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .tone-num-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      padding: 1px 7px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .tone-name-th {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .tone-name-en { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .tone-rtgs { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+    .tone-pitch { font-size: 1.3rem; letter-spacing: 2px; margin: 6px 0 4px; }
+    .tone-example {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .tone-example-en { font-size: 0.72rem; color: var(--text-muted); }
+    .tone-mid  { border-color: #94a3b8; }
+    .tone-low  { border-color: #3b82f6; }
+    .tone-fall { border-color: #ef4444; }
+    .tone-high { border-color: #f59e0b; }
+    .tone-rise { border-color: #10b981; }
+
+    .tone-marks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .tone-mark-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .tone-mark-symbol {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 44px;
+      text-align: center;
+    }
+    .tone-mark-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+    .tone-mark-rtgs { font-size: 0.75rem; color: var(--text-muted); }
+
+    .tone-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .tone-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      font-size: 0.84rem;
+      min-width: 560px;
+    }
+    .tone-table th {
+      background: #f8fafc;
+      padding: 11px 14px;
+      text-align: left;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    .tone-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .tone-table tr:last-child td { border-bottom: none; }
+    .tone-table tr:hover td { background: #f8fafc; }
+    .t-num {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.7rem;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .t-class-high { font-weight: 700; color: var(--high); }
+    .t-class-mid  { font-weight: 700; color: var(--mid); }
+    .t-class-low  { font-weight: 700; color: var(--low); }
+    .t-mid  { background: #f1f5f9; color: #475569; font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; white-space: nowrap; display: inline-block; }
+    .t-low  { background: #dbeafe; color: #1d4ed8; font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; white-space: nowrap; display: inline-block; }
+    .t-fall { background: #fee2e2; color: #991b1b; font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; white-space: nowrap; display: inline-block; }
+    .t-high { background: #fef3c7; color: #92400e; font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; white-space: nowrap; display: inline-block; }
+    .t-rise { background: #d1fae5; color: #065f46; font-weight: 700; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem; white-space: nowrap; display: inline-block; }
+    .tone-ex-thai { font-family: 'Sarabun', sans-serif; font-size: 1rem; font-weight: 600; }
+
+    .tone-special-box {
+      background: linear-gradient(135deg, #eff6ff, #ede9fe);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+    .tone-special-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .tone-special-box ul { padding-left: 18px; }
+    .tone-special-box li { margin-bottom: 4px; }
+    .tone-special-box .thai-inline {
+      font-family: 'Sarabun', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .consonant-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
+      .fc-thai { font-size: 2.4rem; }
+      .fc-wrapper { height: 270px; }
+      .main-tab { font-size: 0.78rem; padding: 12px 6px; }
+    }
+
+    /* ── SPEECH INDICATOR ────────────────────────── */
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+      70%  { box-shadow: 0 0 0 8px rgba(37,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    }
+    .speaking { animation: pulse-ring 0.8s ease-out; }
+
+    .no-tts-msg {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: #92400e;
+      text-align: center;
+      margin-bottom: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🇹🇭 Thai Basics</h1>
+  <p>Learn the Thai alphabet · 44 consonants · 32 vowels · Tones · Daily vocabulary</p>
+</header>
+
+<nav class="main-tabs" id="mainTabs">
+  <button class="main-tab active" data-tab="consonants">🔤 Consonants</button>
+  <button class="main-tab"        data-tab="vowels">🔡 Vowels</button>
+  <button class="main-tab"        data-tab="tones">🎵 Tones</button>
+  <button class="main-tab"        data-tab="flashcards">📚 Flashcards</button>
+</nav>
+
+<main>
+  <!-- ═══════════════════════════════════════════════════ CONSONANTS -->
+  <section class="section active" id="tab-consonants">
+    <div class="class-info">
+      Thai has <strong>44 consonants</strong> divided into three classes that determine the tone of a syllable.
+      <strong>High class (อักษรสูง)</strong> — 11 consonants.
+      <strong>Mid class (อักษรกลาง)</strong> — 9 consonants.
+      <strong>Low class (อักษรต่ำ)</strong> — 24 consonants.
+      Consonants marked <span style="background:#f5f3ff;color:#6d28d9;font-size:0.75rem;padding:1px 6px;border-radius:999px;font-weight:700">less common</span> appear rarely in everyday Thai.
+      Click any card to hear the example word. 🔊
+    </div>
+    <div id="noTtsConsonant" class="no-tts-msg">Thai text-to-speech not available in this browser. Try Chrome or Safari on macOS/iOS.</div>
+    <div class="class-tabs">
+      <button class="class-tab active" data-class="high">⬆ High Class (11)</button>
+      <button class="class-tab"        data-class="mid">➡ Mid Class (9)</button>
+      <button class="class-tab"        data-class="low">⬇ Low Class (24)</button>
+    </div>
+    <div class="consonant-grid" id="consonantGrid"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ VOWELS -->
+  <section class="section" id="tab-vowels">
+    <div class="vowel-intro">
+      Thai has <strong>32 vowel forms</strong> (สระ). Vowels can be short or long — length changes meaning.
+      Vowel symbols appear above, below, before, or after the consonant. The placeholder <strong>อ</strong> shows where the consonant sits.
+      Click any vowel card to hear it. 🔊
+    </div>
+    <div id="noTtsVowel" class="no-tts-msg">Thai TTS not available. Try Chrome or Safari.</div>
+    <div id="vowelContent"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ TONES -->
+  <section class="section" id="tab-tones">
+    <div class="tones-intro">
+      Thai is a <strong>tonal language</strong> with <strong>5 tones</strong>. The tone of a syllable is determined by:
+      the <strong>consonant class</strong> (High / Mid / Low), the <strong>syllable type</strong> (live or dead), and the <strong>tone mark</strong> (if any).
+      Mastering these 12 patterns lets you read any Thai syllable's tone.
+    </div>
+
+    <!-- 5 Tones -->
+    <div class="tones-block-title">The 5 Tones (เสียงวรรณยุกต์)</div>
+    <div class="tone-five-grid">
+      <div class="tone-card tone-mid" onclick="speak('มา')">
+        <div class="tone-num-badge">Tone 1</div>
+        <span class="tone-name-th">สามัญ</span>
+        <div class="tone-name-en">Mid</div>
+        <div class="tone-rtgs">saa-man</div>
+        <div class="tone-pitch">▬</div>
+        <div class="tone-example">มา</div>
+        <div class="tone-example-en">to come</div>
+      </div>
+      <div class="tone-card tone-low" onclick="speak('ไม้')">
+        <div class="tone-num-badge">Tone 2</div>
+        <span class="tone-name-th">เอก</span>
+        <div class="tone-name-en">Low</div>
+        <div class="tone-rtgs">eek · mark: ่</div>
+        <div class="tone-pitch">↘</div>
+        <div class="tone-example">ไม้</div>
+        <div class="tone-example-en">wood / tree</div>
+      </div>
+      <div class="tone-card tone-fall" onclick="speak('ข้าว')">
+        <div class="tone-num-badge">Tone 3</div>
+        <span class="tone-name-th">โท</span>
+        <div class="tone-name-en">Falling</div>
+        <div class="tone-rtgs">thoo · mark: ้</div>
+        <div class="tone-pitch">↘↘</div>
+        <div class="tone-example">ข้าว</div>
+        <div class="tone-example-en">rice</div>
+      </div>
+      <div class="tone-card tone-high" onclick="speak('น้ำ')">
+        <div class="tone-num-badge">Tone 4</div>
+        <span class="tone-name-th">ตรี</span>
+        <div class="tone-name-en">High</div>
+        <div class="tone-rtgs">trii · mark: ๊</div>
+        <div class="tone-pitch">↑</div>
+        <div class="tone-example">น้ำ</div>
+        <div class="tone-example-en">water</div>
+      </div>
+      <div class="tone-card tone-rise" onclick="speak('หมา')">
+        <div class="tone-num-badge">Tone 5</div>
+        <span class="tone-name-th">จัตวา</span>
+        <div class="tone-name-en">Rising</div>
+        <div class="tone-rtgs">jattawaa · mark: ๋</div>
+        <div class="tone-pitch">↗</div>
+        <div class="tone-example">หมา</div>
+        <div class="tone-example-en">dog</div>
+      </div>
+    </div>
+
+    <!-- Tone Marks -->
+    <div class="tones-block-title">Tone Marks (วรรณยุกต์)</div>
+    <div class="tone-marks-grid">
+      <div class="tone-mark-card">
+        <div class="tone-mark-symbol">ก่</div>
+        <div>
+          <div class="tone-mark-name">máy èek</div>
+          <div class="tone-mark-rtgs">ไม้เอก · ่</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">LC → Falling &nbsp;|&nbsp; HC/MC → Low</div>
+        </div>
+      </div>
+      <div class="tone-mark-card">
+        <div class="tone-mark-symbol">ก้</div>
+        <div>
+          <div class="tone-mark-name">máy thoo</div>
+          <div class="tone-mark-rtgs">ไม้โท · ้</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">LC → High &nbsp;|&nbsp; HC/MC → Falling</div>
+        </div>
+      </div>
+      <div class="tone-mark-card">
+        <div class="tone-mark-symbol">ก๊</div>
+        <div>
+          <div class="tone-mark-name">máy trii</div>
+          <div class="tone-mark-rtgs">ไม้ตรี · ๊</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">MC only → High</div>
+        </div>
+      </div>
+      <div class="tone-mark-card">
+        <div class="tone-mark-symbol">ก๋</div>
+        <div>
+          <div class="tone-mark-name">máy jattawaa</div>
+          <div class="tone-mark-rtgs">ไม้จัตวา · ๋</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">MC only → Rising</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tone Chart -->
+    <div class="tones-block-title">The 12 Tone Patterns</div>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px">
+      <strong>Live syllable</strong> = ends in a long vowel or sonorant (ม น ง ว ล ร ย). &nbsp;
+      <strong>Dead syllable</strong> = ends in a stop (ก ด ต บ ป) or a short vowel with no final.
+    </p>
+    <div class="tone-table-wrapper">
+      <table class="tone-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Class</th>
+            <th>Syllable</th>
+            <th>Tone mark</th>
+            <th>Resulting tone</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- LOW CLASS -->
+          <tr>
+            <td><span class="t-num">1</span></td>
+            <td><span class="t-class-low">Low</span></td>
+            <td>Live</td>
+            <td>None</td>
+            <td><span class="t-mid">Mid สามัญ</span></td>
+            <td><span class="tone-ex-thai">มา</span> — to come</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">2</span></td>
+            <td><span class="t-class-low">Low</span></td>
+            <td>Live</td>
+            <td>่ (máy èek)</td>
+            <td><span class="t-fall">Falling โท</span></td>
+            <td><span class="tone-ex-thai">น่า</span> — interesting</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">3</span></td>
+            <td><span class="t-class-low">Low</span></td>
+            <td>Live</td>
+            <td>้ (máy thoo)</td>
+            <td><span class="t-high">High ตรี</span></td>
+            <td><span class="tone-ex-thai">น้า</span> — aunt/uncle</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">4</span></td>
+            <td><span class="t-class-low">Low</span></td>
+            <td>Dead — short vowel</td>
+            <td>None</td>
+            <td><span class="t-high">High ตรี</span></td>
+            <td><span class="tone-ex-thai">นก</span> — bird</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">5</span></td>
+            <td><span class="t-class-low">Low</span></td>
+            <td>Dead — long vowel</td>
+            <td>None</td>
+            <td><span class="t-fall">Falling โท</span></td>
+            <td><span class="tone-ex-thai">นาก</span> — otter</td>
+          </tr>
+          <!-- HIGH CLASS -->
+          <tr>
+            <td><span class="t-num">6</span></td>
+            <td><span class="t-class-high">High</span></td>
+            <td>Live</td>
+            <td>None</td>
+            <td><span class="t-rise">Rising จัตวา</span></td>
+            <td><span class="tone-ex-thai">หมา</span> — dog</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">7</span></td>
+            <td><span class="t-class-high">High</span></td>
+            <td>Live</td>
+            <td>่ (máy èek)</td>
+            <td><span class="t-low">Low เอก</span></td>
+            <td><span class="tone-ex-thai">ใหม่</span> — new</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">8</span></td>
+            <td><span class="t-class-high">High</span></td>
+            <td>Live</td>
+            <td>้ (máy thoo)</td>
+            <td><span class="t-fall">Falling โท</span></td>
+            <td><span class="tone-ex-thai">ข้าว</span> — rice</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">9</span></td>
+            <td><span class="t-class-high">High</span></td>
+            <td>Dead (any)</td>
+            <td>None</td>
+            <td><span class="t-low">Low เอก</span></td>
+            <td><span class="tone-ex-thai">สก</span> — dirty</td>
+          </tr>
+          <!-- MID CLASS -->
+          <tr>
+            <td><span class="t-num">10</span></td>
+            <td><span class="t-class-mid">Mid</span></td>
+            <td>Live</td>
+            <td>None</td>
+            <td><span class="t-mid">Mid สามัญ</span></td>
+            <td><span class="tone-ex-thai">กา</span> — crow</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">11</span></td>
+            <td><span class="t-class-mid">Mid</span></td>
+            <td>Live</td>
+            <td>่ (máy èek)</td>
+            <td><span class="t-low">Low เอก</span></td>
+            <td><span class="tone-ex-thai">ก่า</span> — (to) stammer</td>
+          </tr>
+          <tr>
+            <td><span class="t-num">12</span></td>
+            <td><span class="t-class-mid">Mid</span></td>
+            <td>Live</td>
+            <td>้ (máy thoo)</td>
+            <td><span class="t-fall">Falling โท</span></td>
+            <td><span class="tone-ex-thai">ก้า</span> — to stride</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:20px">
+      Note: Mid class dead syllables follow the same Low tone (เอก) as pattern 11. High class ๊ and ๋ marks are rarely used.
+    </p>
+
+    <!-- Special Rules -->
+    <div class="tones-block-title">Special Rules</div>
+
+    <div class="tone-special-box">
+      <h4>ห นำ — Leading ห</h4>
+      When <span class="thai-inline">ห</span> precedes a <strong>Low Class sonorant</strong>
+      (<span class="thai-inline">ม น ง ว ล ร ย ญ ณ</span>), it is <em>silent</em> but converts the sonorant's tone
+      class from <strong>Low → High</strong>, giving <strong>High Class tone patterns</strong> (patterns 6–9).
+      <br><br>
+      <ul>
+        <li><span class="thai-inline">หมา</span> hǎa — dog (ม is LC, but ห นำ → Rising tone like HC)</li>
+        <li><span class="thai-inline">หนู</span> hǔu — mouse (น is LC, ห นำ → Rising tone)</li>
+        <li><span class="thai-inline">หนาว</span> hǎao — cold (น is LC, ห นำ → Rising tone)</li>
+      </ul>
+    </div>
+
+    <div class="tone-special-box">
+      <h4>Live vs Dead Syllables — Quick Guide</h4>
+      <ul>
+        <li><strong>Live syllable:</strong> ends in a long vowel, or a sonorant final (ม น ง ว ย). Tone follows the <em>no-mark</em> pattern.</li>
+        <li><strong>Dead syllable — short:</strong> short vowel + stop final (ก ด ต บ ป), or bare short vowel. → High (LC) or Low (HC/MC).</li>
+        <li><strong>Dead syllable — long:</strong> long vowel + stop final. → Falling (LC) or Low (HC/MC).</li>
+        <li><strong>Final sonorants do NOT change the tone class</strong> — only the initial consonant's class matters.</li>
+      </ul>
+    </div>
+
+    <div class="tone-special-box">
+      <h4>Consonant Clusters</h4>
+      When two consonants begin a syllable (e.g. <span class="thai-inline">กล กร ปร</span>),
+      the <strong>first consonant (C1)</strong> determines the tone class.
+      The second consonant (C2) is pronounced but does not affect tone.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ FLASHCARDS -->
+  <section class="section" id="tab-flashcards">
+    <div class="fc-header">
+      <h2>📚 Daily Flashcards — High Class Consonants</h2>
+      <p>20 words per day · Currently focusing on words using <strong>High Class (อักษรสูง)</strong> consonants</p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-text" id="progressText">0 / 20 completed today</div>
+    </div>
+
+    <div id="noTtsFlash" class="no-tts-msg">Thai TTS not available. Try Chrome or Safari.</div>
+    <div id="flashcardArea"></div>
+  </section>
+</main>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════════════════════════
+
+const CONSONANTS = {
+  // ── HIGH CLASS (11) — Lesson 6 order ──────────────────────────
+  high: [
+    { char:'ผ', name:'ผ ผึ้ง',    rtgs:'ph', initial:'ph', final:'–',  ex:'ผึ้ง',   exMeaning:'bee',          exRTGS:'phueng',   emoji:'🐝', img:'thaiweb-1.jpeg' },
+    { char:'ถ', name:'ถ ถุง',    rtgs:'th', initial:'th', final:'t',  ex:'ถุง',    exMeaning:'bag',          exRTGS:'thung',    emoji:'👜' },
+    { char:'ฐ', name:'ฐ ฐาน',    rtgs:'th', initial:'th', final:'t',  ex:'ฐาน',    exMeaning:'base/pedestal',exRTGS:'thaan',    emoji:'🏛️', lessCommon:true },
+    { char:'ฉ', name:'ฉ ฉิ่ง',   rtgs:'ch', initial:'ch', final:'–',  ex:'ฉิ่ง',   exMeaning:'cymbals',      exRTGS:'ching',    emoji:'🥁' },
+    { char:'ข', name:'ข ไข่',    rtgs:'kh', initial:'kh', final:'k',  ex:'ไข่',    exMeaning:'egg',          exRTGS:'khai',     emoji:'🥚' },
+    { char:'ฃ', name:'ฃ ขวด',    rtgs:'kh', initial:'kh', final:'k',  ex:'ขวด',    exMeaning:'bottle',       exRTGS:'khuat',    emoji:'🍶', obsolete:true },
+    { char:'ฝ', name:'ฝ ฝา',     rtgs:'f',  initial:'f',  final:'–',  ex:'ฝา',     exMeaning:'lid/cover',    exRTGS:'faa',      emoji:'🫙' },
+    { char:'ส', name:'ส เสือ',   rtgs:'s',  initial:'s',  final:'t',  ex:'เสือ',   exMeaning:'tiger',        exRTGS:'suea',     emoji:'🐯', img:'thaiweb-2.jpeg' },
+    { char:'ศ', name:'ศ ศาลา',   rtgs:'s',  initial:'s',  final:'t',  ex:'ศาลา',   exMeaning:'pavilion',     exRTGS:'saala',    emoji:'🏛️', lessCommon:true },
+    { char:'ษ', name:'ษ ฤๅษี',   rtgs:'s',  initial:'s',  final:'t',  ex:'ฤๅษี',   exMeaning:'hermit',       exRTGS:'ruusii',   emoji:'🧙', lessCommon:true },
+    { char:'ห', name:'ห หีบ',    rtgs:'h',  initial:'h',  final:'–',  ex:'หีบ',    exMeaning:'chest/box',    exRTGS:'hiip',     emoji:'📦' },
+  ],
+  // ── MID CLASS (9) — Lesson 9 order ────────────────────────────
+  mid: [
+    { char:'บ', name:'บ ใบไม้',  rtgs:'b',  initial:'b',  final:'p',  ex:'ใบไม้',  exMeaning:'leaf',         exRTGS:'baimai',   emoji:'🍃' },
+    { char:'ป', name:'ป ปลา',    rtgs:'p',  initial:'p',  final:'p',  ex:'ปลา',    exMeaning:'fish',         exRTGS:'plaa',     emoji:'🐟' },
+    { char:'ด', name:'ด เด็ก',   rtgs:'d',  initial:'d',  final:'t',  ex:'เด็ก',   exMeaning:'child',        exRTGS:'dek',      emoji:'👦', img:'thaiweb-5.jpeg' },
+    { char:'ฎ', name:'ฎ ชฎา',    rtgs:'d',  initial:'d',  final:'t',  ex:'ชฎา',    exMeaning:'headdress',    exRTGS:'chadaa',   emoji:'👑', lessCommon:true },
+    { char:'ต', name:'ต เต่า',   rtgs:'t',  initial:'t',  final:'t',  ex:'เต่า',   exMeaning:'turtle',       exRTGS:'tao',      emoji:'🐢' },
+    { char:'ฏ', name:'ฏ ปฏัก',   rtgs:'t',  initial:'t',  final:'t',  ex:'ปฏัก',   exMeaning:'goad/spear',   exRTGS:'patak',    emoji:'🗡️', lessCommon:true },
+    { char:'จ', name:'จ จาน',    rtgs:'j',  initial:'ch', final:'t',  ex:'จาน',    exMeaning:'plate',        exRTGS:'jaan',     emoji:'🍽️' },
+    { char:'ก', name:'ก ไก่',    rtgs:'k',  initial:'k',  final:'k',  ex:'ไก่',    exMeaning:'chicken',      exRTGS:'kai',      emoji:'🐔', img:'thaiweb-4.jpeg' },
+    { char:'อ', name:'อ อ่าง',   rtgs:'–',  initial:'–',  final:'–',  ex:'อ่าง',   exMeaning:'basin/tub',    exRTGS:'aang',     emoji:'🛁' },
+  ],
+  // ── LOW CLASS (24) — Lessons 1, 2, 3 order ────────────────────
+  low: [
+    // Lesson 1 — common stops & fricatives
+    { char:'พ', name:'พ พาน',    rtgs:'ph', initial:'ph', final:'p',  ex:'พาน',    exMeaning:'tray/stand',   exRTGS:'phaan',    emoji:'🥣' },
+    { char:'ท', name:'ท ทหาร',   rtgs:'th', initial:'th', final:'t',  ex:'ทหาร',   exMeaning:'soldier',      exRTGS:'thahaarn', emoji:'💂', img:'thaiweb-3.jpeg' },
+    { char:'ช', name:'ช ช้าง',   rtgs:'ch', initial:'ch', final:'t',  ex:'ช้าง',   exMeaning:'elephant',     exRTGS:'chaang',   emoji:'🐘' },
+    { char:'ค', name:'ค ควาย',   rtgs:'kh', initial:'kh', final:'k',  ex:'ควาย',   exMeaning:'buffalo',      exRTGS:'khwaay',   emoji:'🐃' },
+    { char:'ฟ', name:'ฟ ฟัน',    rtgs:'f',  initial:'f',  final:'–',  ex:'ฟัน',    exMeaning:'teeth',        exRTGS:'fan',      emoji:'🦷' },
+    { char:'ซ', name:'ซ โซ่',    rtgs:'s',  initial:'s',  final:'t',  ex:'โซ่',    exMeaning:'chain',        exRTGS:'soo',      emoji:'⛓️' },
+    { char:'ฮ', name:'ฮ นกฮูก',  rtgs:'h',  initial:'h',  final:'–',  ex:'นกฮูก',  exMeaning:'owl',          exRTGS:'nok huuk', emoji:'🦉' },
+    // Lesson 2 — sonorants
+    { char:'ม', name:'ม ม้า',    rtgs:'m',  initial:'m',  final:'m',  ex:'ม้า',    exMeaning:'horse',        exRTGS:'maa',      emoji:'🐴' },
+    { char:'น', name:'น หนู',    rtgs:'n',  initial:'n',  final:'n',  ex:'หนู',    exMeaning:'mouse',        exRTGS:'nuu',      emoji:'🐭' },
+    { char:'ง', name:'ง งู',     rtgs:'ng', initial:'ng', final:'ng', ex:'งู',     exMeaning:'snake',        exRTGS:'nguu',     emoji:'🐍' },
+    { char:'ว', name:'ว แหวน',   rtgs:'w',  initial:'w',  final:'w',  ex:'แหวน',   exMeaning:'ring',         exRTGS:'waen',     emoji:'💍' },
+    { char:'ล', name:'ล ลิง',    rtgs:'l',  initial:'l',  final:'n',  ex:'ลิง',    exMeaning:'monkey',       exRTGS:'ling',     emoji:'🐒', img:'thaiweb-6.jpeg' },
+    { char:'ร', name:'ร เรือ',   rtgs:'r',  initial:'r',  final:'n',  ex:'เรือ',   exMeaning:'boat',         exRTGS:'ruea',     emoji:'🚢' },
+    { char:'ย', name:'ย ยักษ์',  rtgs:'y',  initial:'y',  final:'y',  ex:'ยักษ์',  exMeaning:'giant/ogre',   exRTGS:'yak',      emoji:'👹' },
+    // Lesson 3 — less common
+    { char:'ภ', name:'ภ สำเภา',  rtgs:'ph', initial:'ph', final:'p',  ex:'สำเภา',  exMeaning:'junk (boat)',  exRTGS:'samphao',  emoji:'⛵', lessCommon:true },
+    { char:'ฑ', name:'ฑ มณโฑ',   rtgs:'th', initial:'th', final:'t',  ex:'มณโฑ',   exMeaning:'Montho (name)',exRTGS:'monthoo',  emoji:'👸', lessCommon:true },
+    { char:'ฒ', name:'ฒ ผู้เฒ่า', rtgs:'th', initial:'th', final:'t', ex:'ผู้เฒ่า', exMeaning:'elder',        exRTGS:'phuu thao',emoji:'👴', lessCommon:true },
+    { char:'ธ', name:'ธ ธง',     rtgs:'th', initial:'th', final:'t',  ex:'ธง',     exMeaning:'flag',         exRTGS:'thong',    emoji:'🚩', lessCommon:true },
+    { char:'ฌ', name:'ฌ เฌอ',    rtgs:'ch', initial:'ch', final:'–',  ex:'เฌอ',    exMeaning:'tree',         exRTGS:'choe',     emoji:'🌳', lessCommon:true },
+    { char:'ฅ', name:'ฅ คน',     rtgs:'kh', initial:'kh', final:'k',  ex:'คน',     exMeaning:'person',       exRTGS:'khon',     emoji:'🧑', lessCommon:true, obsolete:true },
+    { char:'ฆ', name:'ฆ ระฆัง',  rtgs:'kh', initial:'kh', final:'k',  ex:'ระฆัง',  exMeaning:'bell',         exRTGS:'rakhaang', emoji:'🔔', lessCommon:true },
+    { char:'ณ', name:'ณ เณร',    rtgs:'n',  initial:'n',  final:'n',  ex:'เณร',    exMeaning:'novice monk',  exRTGS:'nen',      emoji:'🧘', lessCommon:true },
+    { char:'ฬ', name:'ฬ จุฬา',   rtgs:'l',  initial:'l',  final:'n',  ex:'จุฬา',   exMeaning:'kite',         exRTGS:'chulaa',   emoji:'🪁', lessCommon:true },
+    { char:'ญ', name:'ญ หญิง',   rtgs:'y',  initial:'y',  final:'n',  ex:'หญิง',   exMeaning:'woman',        exRTGS:'ying',     emoji:'👩', lessCommon:true },
+  ]
+};
+
+// ── VOWELS ──────────────────────────────────────────────────────────
+const VOWELS = [
+  // Short pure vowels
+  { group:'Short Vowels (สระเสียงสั้น)', char:'อะ',   display:'◌ะ',   rtgs:'a',   type:'short', ex:'กะ',    exMeaning:'shrimp paste',  exRTGS:'ka' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'อิ',   display:'◌ิ',   rtgs:'i',   type:'short', ex:'กิน',   exMeaning:'to eat',         exRTGS:'kin' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'อึ',   display:'◌ึ',   rtgs:'ue',  type:'short', ex:'ตึก',   exMeaning:'building',       exRTGS:'tuek' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'อุ',   display:'◌ุ',   rtgs:'u',   type:'short', ex:'กุ้ง',  exMeaning:'shrimp',         exRTGS:'kung' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'เอะ',  display:'เ◌ะ',  rtgs:'e',   type:'short', ex:'เกะ',   exMeaning:'to clutter',     exRTGS:'ke' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'แอะ',  display:'แ◌ะ',  rtgs:'ae',  type:'short', ex:'แกะ',   exMeaning:'to scratch/unwrap',exRTGS:'kae' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'โอะ',  display:'โ◌ะ',  rtgs:'o',   type:'short', ex:'โต๊ะ',  exMeaning:'table',          exRTGS:'to' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'เอาะ', display:'เ◌าะ', rtgs:'or',  type:'short', ex:'เกาะ',  exMeaning:'island',         exRTGS:'ko' },
+  { group:'Short Vowels (สระเสียงสั้น)', char:'เออะ', display:'เ◌อะ', rtgs:'oe',  type:'short', ex:'เบอะ',  exMeaning:'blurry',         exRTGS:'boe' },
+  // Long pure vowels
+  { group:'Long Vowels (สระเสียงยาว)',   char:'อา',   display:'◌า',   rtgs:'aa',  type:'long',  ex:'มา',    exMeaning:'to come',        exRTGS:'maa' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'อี',   display:'◌ี',   rtgs:'ii',  type:'long',  ex:'ดี',    exMeaning:'good',           exRTGS:'dii' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'อือ',  display:'◌ือ',  rtgs:'uue', type:'long',  ex:'ถือ',   exMeaning:'to hold',        exRTGS:'thue' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'อู',   display:'◌ู',   rtgs:'uu',  type:'long',  ex:'หนู',   exMeaning:'mouse',          exRTGS:'nuu' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'เอ',   display:'เ◌',   rtgs:'ee',  type:'long',  ex:'เก',    exMeaning:'old (of things)',exRTGS:'ke' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'แอ',   display:'แ◌',   rtgs:'ae',  type:'long',  ex:'แมว',   exMeaning:'cat',            exRTGS:'maew' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'โอ',   display:'โ◌',   rtgs:'oo',  type:'long',  ex:'โต',    exMeaning:'to grow/big',    exRTGS:'too' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'ออ',   display:'◌อ',   rtgs:'or',  type:'long',  ex:'กอ',    exMeaning:'embrace',        exRTGS:'kor' },
+  { group:'Long Vowels (สระเสียงยาว)',   char:'เออ',  display:'เ◌อ',  rtgs:'oe',  type:'long',  ex:'เธอ',   exMeaning:'she/you (f)',    exRTGS:'thoe' },
+  // Diphthongs
+  { group:'Diphthongs (สระประสม)',        char:'เอียะ',display:'เ◌ียะ',rtgs:'ia',  type:'short', ex:'เสียะ', exMeaning:'(short ia)',     exRTGS:'sia' },
+  { group:'Diphthongs (สระประสม)',        char:'เอีย', display:'เ◌ีย', rtgs:'ia',  type:'long',  ex:'เสีย',  exMeaning:'to lose',        exRTGS:'siia' },
+  { group:'Diphthongs (สระประสม)',        char:'เอือะ',display:'เ◌ือะ',rtgs:'uea', type:'short', ex:'เจือะ', exMeaning:'(short uea)',    exRTGS:'juea' },
+  { group:'Diphthongs (สระประสม)',        char:'เอือ', display:'เ◌ือ', rtgs:'uea', type:'long',  ex:'เสือ',  exMeaning:'tiger',          exRTGS:'suea' },
+  { group:'Diphthongs (สระประสม)',        char:'อัวะ', display:'◌ัวะ', rtgs:'ua',  type:'short', ex:'กัวะ',  exMeaning:'(short ua)',     exRTGS:'kua' },
+  { group:'Diphthongs (สระประสม)',        char:'อัว',  display:'◌ัว',  rtgs:'ua',  type:'long',  ex:'กลัว',  exMeaning:'to fear',        exRTGS:'kluua' },
+  // Special vowels
+  { group:'Special Vowels (สระเฉพาะ)',    char:'อำ',   display:'◌ำ',   rtgs:'am',  type:'special',ex:'ทำ',   exMeaning:'to do',          exRTGS:'tham' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'ไอ',   display:'ไ◌',   rtgs:'ai',  type:'special',ex:'ไม้',  exMeaning:'wood/tree',      exRTGS:'mai' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'ใอ',   display:'ใ◌',   rtgs:'ai',  type:'special',ex:'ใจ',   exMeaning:'heart/mind',     exRTGS:'jai' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'เอา',  display:'เ◌า',  rtgs:'ao',  type:'special',ex:'เขา',  exMeaning:'he/she/mountain',exRTGS:'khao' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'อาว',  display:'◌าว',  rtgs:'aao', type:'special',ex:'ข้าว', exMeaning:'rice',           exRTGS:'khaao' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'เอย',  display:'เ◌ย',  rtgs:'oei', type:'special',ex:'เฉย',  exMeaning:'indifferent',    exRTGS:'choei' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'วย',   display:'◌วย',  rtgs:'uai', type:'special',ex:'ด้วย', exMeaning:'also/with',      exRTGS:'duai' },
+  { group:'Special Vowels (สระเฉพาะ)',    char:'อิว',  display:'◌ิว',  rtgs:'io',  type:'special',ex:'ริ้ว',  exMeaning:'stripe/wrinkle', exRTGS:'rio' },
+];
+
+// ── FLASHCARD WORDS (High Class Consonants) ──────────────────────
+const FLASHCARD_WORDS = [
+  // ข (kh)
+  { id:'w01', thai:'ข้าว',    rtgs:'khâao',     meaning:'rice',         emoji:'🍚', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w02', thai:'ขา',      rtgs:'khǎa',      meaning:'leg',          emoji:'🦵', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w03', thai:'ขอบคุณ',  rtgs:'khàwp khun',meaning:'thank you',    emoji:'🙏', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w04', thai:'ไข่',     rtgs:'khài',      meaning:'egg',          emoji:'🥚', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w05', thai:'ขาว',     rtgs:'khǎao',     meaning:'white',        emoji:'⬜', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w06', thai:'ขาย',     rtgs:'khǎai',     meaning:'to sell',      emoji:'🛒', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w07', thai:'ขวด',     rtgs:'khùat',     meaning:'bottle',       emoji:'🍶', consonant:'ข', consonantRTGS:'kh' },
+  { id:'w08', thai:'เข้าใจ',  rtgs:'khâo jai',  meaning:'to understand',emoji:'💡', consonant:'ข', consonantRTGS:'kh' },
+  // ฉ (ch)
+  { id:'w09', thai:'ฉัน',     rtgs:'chǎn',      meaning:'I / me (f)',   emoji:'👩', consonant:'ฉ', consonantRTGS:'ch' },
+  { id:'w10', thai:'ฉลาม',    rtgs:'chalǎam',   meaning:'shark',        emoji:'🦈', consonant:'ฉ', consonantRTGS:'ch' },
+  { id:'w11', thai:'ฉลาด',    rtgs:'chalàat',   meaning:'clever / smart',emoji:'🧠', consonant:'ฉ', consonantRTGS:'ch' },
+  { id:'w12', thai:'ฉันทะ',   rtgs:'chantha',   meaning:'desire / will',emoji:'💫', consonant:'ฉ', consonantRTGS:'ch' },
+  // ถ (th)
+  { id:'w13', thai:'ถนน',     rtgs:'thanǒn',    meaning:'road / street',emoji:'🛣️', consonant:'ถ', consonantRTGS:'th' },
+  { id:'w14', thai:'ถ้วย',    rtgs:'thûai',     meaning:'cup',          emoji:'🥤', consonant:'ถ', consonantRTGS:'th' },
+  { id:'w15', thai:'ถุง',     rtgs:'thǔng',     meaning:'bag / sack',   emoji:'👜', consonant:'ถ', consonantRTGS:'th' },
+  { id:'w16', thai:'ถาม',     rtgs:'thǎam',     meaning:'to ask',       emoji:'❓', consonant:'ถ', consonantRTGS:'th' },
+  { id:'w17', thai:'ถ่ายรูป', rtgs:'thàai rûup',meaning:'to take a photo',emoji:'📸', consonant:'ถ', consonantRTGS:'th' },
+  // ผ (ph)
+  { id:'w18', thai:'ผม',      rtgs:'phǒm',      meaning:'I / me (m) · hair',emoji:'💇', consonant:'ผ', consonantRTGS:'ph' },
+  { id:'w19', thai:'ผัก',     rtgs:'phàk',      meaning:'vegetable',    emoji:'🥦', consonant:'ผ', consonantRTGS:'ph' },
+  { id:'w20', thai:'ผึ้ง',    rtgs:'phûeng',    meaning:'bee',          emoji:'🐝', consonant:'ผ', consonantRTGS:'ph' },
+  { id:'w21', thai:'ผล',      rtgs:'phǒn',      meaning:'fruit / result',emoji:'🍎', consonant:'ผ', consonantRTGS:'ph' },
+  { id:'w22', thai:'ผ้า',     rtgs:'phâa',      meaning:'cloth / fabric',emoji:'🧣', consonant:'ผ', consonantRTGS:'ph' },
+  // ฝ (f)
+  { id:'w23', thai:'ฝน',      rtgs:'fǒn',       meaning:'rain',         emoji:'🌧️', consonant:'ฝ', consonantRTGS:'f' },
+  { id:'w24', thai:'ฝา',      rtgs:'fǎa',       meaning:'lid / cover',  emoji:'🫙', consonant:'ฝ', consonantRTGS:'f' },
+  { id:'w25', thai:'ฝึก',     rtgs:'fùek',      meaning:'to practice',  emoji:'💪', consonant:'ฝ', consonantRTGS:'f' },
+  { id:'w26', thai:'ฝัน',     rtgs:'fǎn',       meaning:'dream',        emoji:'💭', consonant:'ฝ', consonantRTGS:'f' },
+  { id:'w27', thai:'ฝ้าย',    rtgs:'fâai',      meaning:'cotton',       emoji:'🌿', consonant:'ฝ', consonantRTGS:'f' },
+  // ศ / ษ / ส (s)
+  { id:'w28', thai:'ศิลปะ',   rtgs:'sǐnlapa',   meaning:'art',          emoji:'🎨', consonant:'ศ', consonantRTGS:'s' },
+  { id:'w29', thai:'ศูนย์',   rtgs:'sǔun',      meaning:'center / zero',emoji:'0️⃣', consonant:'ศ', consonantRTGS:'s' },
+  { id:'w30', thai:'สวัสดี',  rtgs:'sawàt dii', meaning:'hello / goodbye',emoji:'👋', consonant:'ส', consonantRTGS:'s' },
+  { id:'w31', thai:'สุนัข',   rtgs:'sùnak',     meaning:'dog',          emoji:'🐕', consonant:'ส', consonantRTGS:'s' },
+  { id:'w32', thai:'สวย',     rtgs:'sǔai',      meaning:'beautiful',    emoji:'💄', consonant:'ส', consonantRTGS:'s' },
+  { id:'w33', thai:'สาม',     rtgs:'sǎam',      meaning:'three',        emoji:'3️⃣', consonant:'ส', consonantRTGS:'s' },
+  { id:'w34', thai:'สบาย',    rtgs:'sabàai',    meaning:'comfortable / well',emoji:'😊', consonant:'ส', consonantRTGS:'s' },
+  { id:'w35', thai:'สีแดง',   rtgs:'sǐi daeng', meaning:'red colour',   emoji:'🔴', consonant:'ส', consonantRTGS:'s' },
+  { id:'w36', thai:'สิบ',     rtgs:'sìp',       meaning:'ten',          emoji:'🔟', consonant:'ส', consonantRTGS:'s' },
+  { id:'w37', thai:'สอง',     rtgs:'sǒng',      meaning:'two',          emoji:'2️⃣', consonant:'ส', consonantRTGS:'s' },
+  // ห (h)
+  { id:'w38', thai:'หู',      rtgs:'hǔu',       meaning:'ear',          emoji:'👂', consonant:'ห', consonantRTGS:'h' },
+  { id:'w39', thai:'หัว',     rtgs:'hǔa',       meaning:'head',         emoji:'🗣️', consonant:'ห', consonantRTGS:'h' },
+  { id:'w40', thai:'ห้อง',    rtgs:'hông',      meaning:'room',         emoji:'🏠', consonant:'ห', consonantRTGS:'h' },
+  { id:'w41', thai:'ห้า',     rtgs:'hâa',       meaning:'five',         emoji:'5️⃣', consonant:'ห', consonantRTGS:'h' },
+  { id:'w42', thai:'หาย',     rtgs:'hǎai',      meaning:'to disappear / recover',emoji:'💊', consonant:'ห', consonantRTGS:'h' },
+  { id:'w43', thai:'หนังสือ', rtgs:'nǎngsue',   meaning:'book',         emoji:'📚', consonant:'ห', consonantRTGS:'h' },
+  { id:'w44', thai:'หิน',     rtgs:'hǐn',       meaning:'rock / stone', emoji:'🪨', consonant:'ห', consonantRTGS:'h' },
+  { id:'w45', thai:'เหนื่อย', rtgs:'nùeai',     meaning:'tired',        emoji:'😴', consonant:'ห', consonantRTGS:'h' },
+];
+
+// ══════════════════════════════════════════════════════════════════
+//  SPEECH
+// ══════════════════════════════════════════════════════════════════
+let ttsAvailable = false;
+
+function checkTTS() {
+  if (!('speechSynthesis' in window)) return false;
+  const voices = window.speechSynthesis.getVoices();
+  return voices.some(v => v.lang.startsWith('th'));
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'th-TH';
+  utt.rate = 0.8;
+  utt.pitch = 1;
+  window.speechSynthesis.speak(utt);
+}
+
+// Voices load async — wait for them
+if ('speechSynthesis' in window) {
+  if (window.speechSynthesis.getVoices().length > 0) {
+    ttsAvailable = checkTTS();
+  }
+  window.speechSynthesis.onvoiceschanged = () => {
+    ttsAvailable = checkTTS();
+    if (!ttsAvailable) {
+      document.querySelectorAll('.no-tts-msg').forEach(el => el.style.display = 'block');
+    }
+  };
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════════════════════
+document.querySelectorAll('.main-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════════════════════════
+//  CONSONANT RENDERING
+// ══════════════════════════════════════════════════════════════════
+let currentClass = 'high';
+
+function renderConsonants(cls) {
+  const grid = document.getElementById('consonantGrid');
+  grid.innerHTML = '';
+  CONSONANTS[cls].forEach(c => {
+    const card = document.createElement('div');
+    card.className = `consonant-card ${cls}-card`;
+
+    // Badge: obsolete takes priority, then less common
+    let cornerTag = '';
+    if (c.obsolete)    cornerTag = '<span class="obsolete-tag">obsolete</span>';
+    else if (c.lessCommon) cornerTag = '<span class="less-common-tag">less common</span>';
+
+    card.innerHTML = `
+      ${cornerTag}
+      <span class="card-class-badge badge-${cls}">${cls === 'high' ? '⬆ High' : cls === 'mid' ? '➡ Mid' : '⬇ Low'}</span>
+      <span class="consonant-char">${c.char}</span>
+      <div class="consonant-name">${c.name}</div>
+      <div class="consonant-rtgs">/${c.rtgs}/</div>
+      <div class="sounds-row">
+        <span class="sound-pill">Initial: <span>${c.initial}</span></span>
+        <span class="sound-pill">Final: <span>${c.final}</span></span>
+      </div>
+      <div class="example-row">
+        ${c.img
+          ? `<img src="${c.img}" class="example-img" alt="${c.exMeaning}">`
+          : `<span class="example-emoji">${c.emoji}</span>`}
+        <div class="example-text">
+          <span class="example-thai">${c.ex}</span>
+          <span class="example-meaning">${c.exMeaning} · ${c.exRTGS}</span>
+        </div>
+        <button class="speak-btn ${cls}-btn" title="Hear pronunciation">🔊</button>
+      </div>
+    `;
+    // Click card → speak example
+    card.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('speak-btn')) {
+        speak(c.ex);
+        card.classList.add('speaking');
+        setTimeout(() => card.classList.remove('speaking'), 900);
+      }
+    });
+    // Speak button
+    card.querySelector('.speak-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      speak(c.char + ' ' + c.ex);
+      const btn = e.currentTarget;
+      btn.classList.add('speaking');
+      setTimeout(() => btn.classList.remove('speaking'), 900);
+    });
+    grid.appendChild(card);
+  });
+}
+
+// Class sub-tabs
+document.querySelectorAll('.class-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.class-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentClass = btn.dataset.class;
+    renderConsonants(currentClass);
+  });
+});
+
+renderConsonants('high');
+
+// ══════════════════════════════════════════════════════════════════
+//  VOWEL RENDERING
+// ══════════════════════════════════════════════════════════════════
+function renderVowels() {
+  const container = document.getElementById('vowelContent');
+  container.innerHTML = '';
+  const groups = {};
+  VOWELS.forEach(v => {
+    if (!groups[v.group]) groups[v.group] = [];
+    groups[v.group].push(v);
+  });
+  Object.entries(groups).forEach(([groupName, vowels]) => {
+    const title = document.createElement('div');
+    title.className = 'vowel-section-title';
+    title.textContent = groupName;
+    container.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'vowel-grid';
+    vowels.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'vowel-card';
+      card.innerHTML = `
+        <span class="vowel-char">${v.char}</span>
+        <div class="vowel-rtgs">/${v.rtgs}/</div>
+        <span class="vowel-type-pill ${v.type}">${v.type === 'short' ? 'Short ⚡' : v.type === 'long' ? 'Long ⌛' : 'Special ✨'}</span>
+        <div class="vowel-example">
+          e.g. ${v.ex}<br><span style="color:#94a3b8;font-size:0.75rem">${v.exMeaning}</span>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        speak(v.ex);
+        card.classList.add('speaking');
+        setTimeout(() => card.classList.remove('speaking'), 900);
+      });
+      grid.appendChild(card);
+    });
+    container.appendChild(grid);
+  });
+}
+
+renderVowels();
+
+// ══════════════════════════════════════════════════════════════════
+//  FLASHCARD SYSTEM
+// ══════════════════════════════════════════════════════════════════
+const DAILY_COUNT = 20;
+const LS_DATE    = 'thai_fc_date';
+const LS_WORDS   = 'thai_fc_daily_words';
+const LS_LEARNED = 'thai_fc_learned';
+const LS_POS     = 'thai_fc_pos';
+
+let dailyWords   = [];
+let learnedWords = new Set();
+let currentPos   = 0;
+let isFlipped    = false;
+
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+// Simple seeded shuffle using date string as seed
+function seededShuffle(arr, seed) {
+  const a = [...arr];
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = (Math.imul(31, h) + seed.charCodeAt(i)) | 0;
+  }
+  for (let i = a.length - 1; i > 0; i--) {
+    h = (Math.imul(h, 1664525) + 1013904223) | 0;
+    const j = ((h >>> 0) % (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function initDailyWords() {
+  const saved = localStorage.getItem(LS_DATE);
+  const learned = JSON.parse(localStorage.getItem(LS_LEARNED) || '[]');
+  learnedWords = new Set(learned);
+
+  if (saved === today()) {
+    const stored = JSON.parse(localStorage.getItem(LS_WORDS) || '[]');
+    dailyWords = stored.length ? stored : generateDailyWords();
+    currentPos = parseInt(localStorage.getItem(LS_POS) || '0', 10);
+  } else {
+    dailyWords = generateDailyWords();
+    currentPos = 0;
+    localStorage.setItem(LS_DATE, today());
+    localStorage.setItem(LS_WORDS, JSON.stringify(dailyWords));
+    localStorage.setItem(LS_POS, '0');
+  }
+}
+
+function generateDailyWords() {
+  const unlearned = FLASHCARD_WORDS.filter(w => !learnedWords.has(w.id)).map(w => w.id);
+  const all = FLASHCARD_WORDS.map(w => w.id);
+  const pool = unlearned.length >= DAILY_COUNT ? unlearned : all;
+  const shuffled = seededShuffle(pool, today());
+  return shuffled.slice(0, DAILY_COUNT);
+}
+
+function getWordById(id) {
+  return FLASHCARD_WORDS.find(w => w.id === id);
+}
+
+function countLearnedToday() {
+  return dailyWords.filter(id => learnedWords.has(id)).length;
+}
+
+function saveProgress() {
+  localStorage.setItem(LS_LEARNED, JSON.stringify([...learnedWords]));
+  localStorage.setItem(LS_POS, String(currentPos));
+}
+
+function renderFlashcard() {
+  const area = document.getElementById('flashcardArea');
+  const learnedToday = countLearnedToday();
+  const pct = Math.round((learnedToday / DAILY_COUNT) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${learnedToday} / ${DAILY_COUNT} completed today`;
+
+  if (learnedToday >= DAILY_COUNT) {
+    area.innerHTML = `
+      <div class="session-complete">
+        <div class="big-emoji">🎉</div>
+        <h3>Session Complete!</h3>
+        <p>You've completed all 20 words for today.<br>Come back tomorrow for more High Class consonant vocabulary!</p>
+        <button class="btn-restart" id="restartBtn">↺ Restart Today's Session</button>
+      </div>`;
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      dailyWords.forEach(id => learnedWords.delete(id));
+      currentPos = 0;
+      saveProgress();
+      renderFlashcard();
+    });
+    return;
+  }
+
+  // Skip to next unlearned
+  while (currentPos < dailyWords.length && learnedWords.has(dailyWords[currentPos])) {
+    currentPos++;
+  }
+  if (currentPos >= dailyWords.length) currentPos = 0;
+
+  const word = getWordById(dailyWords[currentPos]);
+  if (!word) return;
+
+  const isLearned = learnedWords.has(word.id);
+  isFlipped = false;
+
+  area.innerHTML = `
+    <p class="tap-hint">👆 Tap the card to reveal meaning &amp; pronunciation</p>
+    <div class="fc-wrapper" id="fcWrapper">
+      <div class="fc-inner" id="fcInner">
+        <div class="fc-face fc-front">
+          <div class="fc-emoji">${word.emoji}</div>
+          <div class="fc-thai">${word.thai}</div>
+          <div class="fc-hint">tap to flip</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-meaning">${word.meaning}</div>
+          <div class="fc-rtgs">/${word.rtgs}/</div>
+          <div class="fc-emoji">${word.emoji}</div>
+          <div class="fc-consonant-used">Uses high class consonant <span>${word.consonant}</span> (${word.consonantRTGS})</div>
+        </div>
+      </div>
+    </div>
+    <div class="word-counter">
+      Card ${currentPos + 1} of ${dailyWords.length}
+      ${isLearned ? '<span class="learned-tag">✓ Known</span>' : ''}
+    </div>
+    <div class="fc-controls" id="fcControls">
+      <button class="fc-btn btn-prev" id="btnPrev">◀ Prev</button>
+      <button class="fc-btn btn-speak" id="btnSpeak">🔊 Say it</button>
+      <button class="fc-btn btn-known" id="btnKnown">✓ Got it!</button>
+      <button class="fc-btn btn-review" id="btnReview">↩ Review again</button>
+      <button class="fc-btn btn-next" id="btnNext">Next ▶</button>
+    </div>
+  `;
+
+  document.getElementById('fcInner').addEventListener('click', () => {
+    isFlipped = !isFlipped;
+    document.getElementById('fcInner').classList.toggle('flipped', isFlipped);
+    if (isFlipped) speak(word.thai);
+  });
+
+  document.getElementById('btnSpeak').addEventListener('click', () => {
+    speak(word.thai);
+    document.getElementById('btnSpeak').classList.add('speaking');
+    setTimeout(() => document.getElementById('btnSpeak')?.classList.remove('speaking'), 900);
+  });
+  document.getElementById('btnKnown').addEventListener('click', () => {
+    learnedWords.add(word.id);
+    saveProgress();
+    renderFlashcard();
+  });
+  document.getElementById('btnReview').addEventListener('click', () => {
+    learnedWords.delete(word.id);
+    saveProgress();
+    currentPos = (currentPos + 1) % dailyWords.length;
+    saveProgress();
+    renderFlashcard();
+  });
+  document.getElementById('btnPrev').addEventListener('click', () => {
+    currentPos = (currentPos - 1 + dailyWords.length) % dailyWords.length;
+    saveProgress();
+    renderFlashcard();
+  });
+  document.getElementById('btnNext').addEventListener('click', () => {
+    currentPos = (currentPos + 1) % dailyWords.length;
+    saveProgress();
+    renderFlashcard();
+  });
+}
+
+initDailyWords();
+renderFlashcard();
+</script>
+</body>
+</html>
