@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thai Basics 🇹🇭 – Learn Thai Alphabet & Vocabulary</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -96,6 +96,30 @@
     .plian-char.changed  { color:#ef4444; }
     .plian-label { font-size:0.62rem; color:var(--text-muted); }
     .plian-arrow { font-size:1rem; color:var(--text-muted); margin-top:4px; }
+
+    /* SCRIPTS */
+    .scripts-intro { background:var(--surface); border-radius:var(--radius); padding:18px 20px; margin-bottom:16px; border:1px solid var(--border); }
+    .scripts-legend { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .scripts-badge { font-size:0.78rem; font-weight:600; padding:4px 10px; border-radius:999px; }
+    .looped-badge    { background:#dbeafe; color:#1e40af; }
+    .loopless-badge  { background:#fef3c7; color:#92400e; }
+    .scripts-class-title { font-size:1rem; font-weight:700; color:var(--text-muted); margin:20px 0 10px; text-transform:uppercase; letter-spacing:0.05em; }
+    .scripts-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:8px; }
+    .scripts-card { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); padding:14px 10px 10px; text-align:center; box-shadow:var(--shadow); }
+    .scripts-card.high-sc { border-top:3px solid var(--high); }
+    .scripts-card.mid-sc  { border-top:3px solid var(--mid); }
+    .scripts-card.low-sc  { border-top:3px solid var(--low); }
+    .scripts-row { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:8px; }
+    .scripts-char { font-size:2.4rem; line-height:1.2; }
+    .scripts-char.looped    { font-family:'Sarabun', serif; color:var(--text); }
+    .scripts-char.loopless  { font-family:'Noto Sans Thai', sans-serif; color:#92400e; }
+    .scripts-divider { width:1px; height:36px; background:var(--border); }
+    .scripts-name { font-size:0.72rem; color:var(--text-muted); margin-top:2px; font-family:'Sarabun',sans-serif; }
+    .scripts-rtgs { font-size:0.72rem; color:var(--accent); font-weight:600; margin-top:1px; }
+    .scripts-labels { display:flex; justify-content:center; gap:10px; margin-top:6px; }
+    .scripts-label { font-size:0.62rem; color:var(--text-muted); }
+    .scripts-card.vowel-sc { border-top:3px solid var(--accent); }
+    .scripts-section-header { font-size:0.78rem; color:var(--text-muted); letter-spacing:0.04em; margin:8px 0 4px; opacity:0.5; }
 
     /* FLASHCARDS */
     .fc-header { background:linear-gradient(135deg,#1e40af,#7c3aed); border-radius:var(--radius); padding:20px 22px; color:#fff; margin-bottom:20px; }
@@ -225,6 +249,7 @@
   <button class="main-tab active" data-tab="consonants">🔤 Consonants</button>
   <button class="main-tab"        data-tab="vowels">🔡 Vowels</button>
   <button class="main-tab"        data-tab="tones">🎵 Tones</button>
+  <button class="main-tab"        data-tab="scripts">✍️ Scripts</button>
   <button class="main-tab"        data-tab="flashcards">📚 Flashcards</button>
 </nav>
 
@@ -345,6 +370,20 @@
   </section>
 
   <!-- FLASHCARDS -->
+  <section class="section" id="tab-scripts">
+    <div class="scripts-intro">
+      <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:6px">Looped vs Loopless Script</h2>
+      <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.6">Thai has two main written styles. <strong>Looped (มีหัว)</strong> — the traditional style with small loops/serifs at stroke endings, used in most textbooks and formal writing. <strong>Loopless (ไม่มีหัว)</strong> — the modern sans-serif style seen on signage, apps, and casual media. The characters are the same; only the style differs.</p>
+    </div>
+    <div class="scripts-legend">
+      <span class="scripts-badge looped-badge">Looped มีหัว</span>
+      <span style="color:var(--text-muted);font-size:0.85rem">← you are learning this</span>
+      <span class="scripts-badge loopless-badge" style="margin-left:16px">Loopless ไม่มีหัว</span>
+      <span style="color:var(--text-muted);font-size:0.85rem">← for reference</span>
+    </div>
+    <div id="scriptsContent"></div>
+  </section>
+
   <section class="section" id="tab-flashcards">
     <div class="fc-header">
       <h2>📚 Daily Flashcards</h2>
@@ -368,40 +407,40 @@ const CONSONANTS = {
     { char:'ถ', name:'ถ ถุง',    rtgs:'th', initial:'th', final:'t',  ex:'ถุง',    exMeaning:'bag',          exRTGS:'thung',    emoji:'👜' },
     { char:'ฐ', name:'ฐ ฐาน',    rtgs:'th', initial:'th', final:'t',  ex:'ฐาน',    exMeaning:'base/pedestal',exRTGS:'thaan',    emoji:'🏛️', lessCommon:true },
     { char:'ฉ', name:'ฉ ฉิ่ง',   rtgs:'ch', initial:'ch', final:'–',  ex:'ฉิ่ง',   exMeaning:'cymbals',      exRTGS:'ching',    emoji:'🥁' },
-    { char:'ข', name:'ข ไข่',    rtgs:'kh', initial:'kh', final:'k',  ex:'ไข่',    exMeaning:'egg',          exRTGS:'khai',     emoji:'🥚' },
-    { char:'ฃ', name:'ฃ ขวด',    rtgs:'kh', initial:'kh', final:'k',  ex:'ขวด',    exMeaning:'bottle',       exRTGS:'khuat',    emoji:'🍶', obsolete:true },
-    { char:'ฝ', name:'ฝ ฝา',     rtgs:'f',  initial:'f',  final:'–',  ex:'ฝา',     exMeaning:'lid/cover',    exRTGS:'faa',      emoji:'🫙' },
-    { char:'ส', name:'ส เสือ',   rtgs:'s',  initial:'s',  final:'t',  ex:'เสือ',   exMeaning:'tiger',        exRTGS:'suea',     emoji:'🐯', img:'thaiweb-2.jpeg' },
-    { char:'ศ', name:'ศ ศาลา',   rtgs:'s',  initial:'s',  final:'t',  ex:'ศาลา',   exMeaning:'pavilion',     exRTGS:'saala',    emoji:'🏛️', lessCommon:true },
-    { char:'ษ', name:'ษ ฤๅษี',   rtgs:'s',  initial:'s',  final:'t',  ex:'ฤๅษี',   exMeaning:'hermit',       exRTGS:'ruusii',   emoji:'🧙', lessCommon:true },
-    { char:'ห', name:'ห หีบ',    rtgs:'h',  initial:'h',  final:'–',  ex:'หีบ',    exMeaning:'chest/box',    exRTGS:'hiip',     emoji:'📦' },
+    { char:'ข', name:'ข ไข่',    rtgs:'kh', initial:'kh', final:'k',  ex:'ไข่',    exMeaning:'egg',          exRTGS:'khay',     emoji:'🥚' },
+    { char:'ฃ', name:'ฃ ขวด',    rtgs:'kh', initial:'kh', final:'k',  ex:'ขวด',    exMeaning:'bottle',       exRTGS:'khuat',    emoji:'🍶', obsolete:true, img:'thaiweb-25.jpeg' },
+    { char:'ฝ', name:'ฝ ฝา',     rtgs:'f',  initial:'f',  final:'–',  ex:'ฝา',     exMeaning:'lid/cover',    exRTGS:'faa',      emoji:'🫙', img:'thaiweb-24.jpeg' },
+    { char:'ส', name:'ส เสือ',   rtgs:'s',  initial:'s',  final:'t',  ex:'เสือ',   exMeaning:'tiger',        exRTGS:'suea',     emoji:'🐯', img:'thaiweb-21.mov' },
+    { char:'ศ', name:'ศ ศาลา',   rtgs:'s',  initial:'s',  final:'t',  ex:'ศาลา',   exMeaning:'pavilion',     exRTGS:'saalaa',    emoji:'🏛️', lessCommon:true },
+    { char:'ษ', name:'ษ ฤๅษี',   rtgs:'s',  initial:'s',  final:'t',  ex:'ฤๅษี',   exMeaning:'hermit',       exRTGS:'ruusii',   emoji:'🧙', lessCommon:true, img:'thaiweb-27.jpeg' },
+    { char:'ห', name:'ห หีบ',    rtgs:'h',  initial:'h',  final:'–',  ex:'หีบ',    exMeaning:'chest/box',    exRTGS:'hiip',     emoji:'📦', img:'thaiweb-28.mov' },
   ],
   mid: [
-    { char:'บ', name:'บ ใบไม้',  rtgs:'b',  initial:'b',  final:'p',  ex:'ใบไม้',  exMeaning:'leaf',         exRTGS:'baimai',   emoji:'🍃' },
+    { char:'บ', name:'บ ใบไม้',  rtgs:'b',  initial:'b',  final:'p',  ex:'ใบไม้',  exMeaning:'leaf',         exRTGS:'baymaay',   emoji:'🍃', img:'thaiweb-26.jpeg' },
     { char:'ป', name:'ป ปลา',    rtgs:'p',  initial:'p',  final:'p',  ex:'ปลา',    exMeaning:'fish',         exRTGS:'plaa',     emoji:'🐟', img:'thaiweb-7.mov' },
     { char:'ด', name:'ด เด็ก',   rtgs:'d',  initial:'d',  final:'t',  ex:'เด็ก',   exMeaning:'child',        exRTGS:'dek',      emoji:'👦', img:'thaiweb-5.jpeg' },
-    { char:'ฎ', name:'ฎ ชฎา',    rtgs:'d',  initial:'d',  final:'t',  ex:'ชฎา',    exMeaning:'headdress',    exRTGS:'chadaa',   emoji:'👑', lessCommon:true },
-    { char:'ต', name:'ต เต่า',   rtgs:'t',  initial:'t',  final:'t',  ex:'เต่า',   exMeaning:'turtle',       exRTGS:'tao',      emoji:'🐢' },
-    { char:'ฏ', name:'ฏ ปฏัก',   rtgs:'t',  initial:'t',  final:'t',  ex:'ปฏัก',   exMeaning:'goad/spear',   exRTGS:'patak',    emoji:'🗡️', lessCommon:true },
-    { char:'จ', name:'จ จาน',    rtgs:'j',  initial:'ch', final:'t',  ex:'จาน',    exMeaning:'plate',        exRTGS:'jaan',     emoji:'🍽️', img:'thaiweb-12.mov' },
-    { char:'ก', name:'ก ไก่',    rtgs:'k',  initial:'k',  final:'k',  ex:'ไก่',    exMeaning:'chicken',      exRTGS:'kai',      emoji:'🐔', img:'thaiweb-13.mov' },
+    { char:'ฎ', name:'ฎ ชฎา',    rtgs:'d',  initial:'d',  final:'t',  ex:'ชฎา',    exMeaning:'headdress',    exRTGS:'chadaa',   emoji:'👑', lessCommon:true, img:'thaiweb-18.mov' },
+    { char:'ต', name:'ต เต่า',   rtgs:'t',  initial:'t',  final:'t',  ex:'เต่า',   exMeaning:'turtle',       exRTGS:'taw',      emoji:'🐢', img:'thaiweb-17.mov' },
+    { char:'ฏ', name:'ฏ ปฏัก',   rtgs:'t',  initial:'t',  final:'t',  ex:'ปฏัก',   exMeaning:'goad/spear',   exRTGS:'patak',    emoji:'🗡️', lessCommon:true, img:'thaiweb-22.jpeg' },
+    { char:'จ', name:'จ จาน',    rtgs:'j',  initial:'ch', final:'t',  ex:'จาน',    exMeaning:'plate',        exRTGS:'caan',     emoji:'🍽️', img:'thaiweb-12.mov' },
+    { char:'ก', name:'ก ไก่',    rtgs:'k',  initial:'k',  final:'k',  ex:'ไก่',    exMeaning:'chicken',      exRTGS:'kay',      emoji:'🐔', img:'thaiweb-13.mov' },
     { char:'อ', name:'อ อ่าง',   rtgs:'–',  initial:'–',  final:'–',  ex:'อ่าง',   exMeaning:'basin/tub',    exRTGS:'aang',     emoji:'🛁' },
   ],
   low: [
     { char:'พ', name:'พ พาน',    rtgs:'ph', initial:'ph', final:'p',  ex:'พาน',    exMeaning:'tray/stand',   exRTGS:'phaan',    emoji:'🥣' },
     { char:'ท', name:'ท ทหาร',   rtgs:'th', initial:'th', final:'t',  ex:'ทหาร',   exMeaning:'soldier',      exRTGS:'thahaarn', emoji:'💂', img:'thaiweb-9.mov' },
     { char:'ช', name:'ช ช้าง',   rtgs:'ch', initial:'ch', final:'t',  ex:'ช้าง',   exMeaning:'elephant',     exRTGS:'chaang',   emoji:'🐘' },
-    { char:'ค', name:'ค ควาย',   rtgs:'kh', initial:'kh', final:'k',  ex:'ควาย',   exMeaning:'buffalo',      exRTGS:'khwaay',   emoji:'🐃' },
-    { char:'ฟ', name:'ฟ ฟัน',    rtgs:'f',  initial:'f',  final:'–',  ex:'ฟัน',    exMeaning:'teeth',        exRTGS:'fan',      emoji:'🦷' },
+    { char:'ค', name:'ค ควาย',   rtgs:'kh', initial:'kh', final:'k',  ex:'ควาย',   exMeaning:'buffalo',      exRTGS:'khwaay',   emoji:'🐃', img:'thaiweb-19.jpeg' },
+    { char:'ฟ', name:'ฟ ฟัน',    rtgs:'f',  initial:'f',  final:'–',  ex:'ฟัน',    exMeaning:'teeth',        exRTGS:'fan',      emoji:'🦷', img:'thaiweb-23.jpeg' },
     { char:'ซ', name:'ซ โซ่',    rtgs:'s',  initial:'s',  final:'t',  ex:'โซ่',    exMeaning:'chain',        exRTGS:'soo',      emoji:'⛓️' },
     { char:'ฮ', name:'ฮ นกฮูก',  rtgs:'h',  initial:'h',  final:'–',  ex:'นกฮูก',  exMeaning:'owl',          exRTGS:'nok huuk', emoji:'🦉', img:'thaiweb-11.mov' },
-    { char:'ม', name:'ม ม้า',    rtgs:'m',  initial:'m',  final:'m',  ex:'ม้า',    exMeaning:'horse',        exRTGS:'maa',      emoji:'🐴' },
+    { char:'ม', name:'ม ม้า',    rtgs:'m',  initial:'m',  final:'m',  ex:'ม้า',    exMeaning:'horse',        exRTGS:'maa',      emoji:'🐴', img:'thaiweb-20.mov' },
     { char:'น', name:'น หนู',    rtgs:'n',  initial:'n',  final:'n',  ex:'หนู',    exMeaning:'mouse',        exRTGS:'nuu',      emoji:'🐭', img:'thaiweb-10.jpeg' },
     { char:'ง', name:'ง งู',     rtgs:'ng', initial:'ng', final:'ng', ex:'งู',     exMeaning:'snake',        exRTGS:'nguu',     emoji:'🐍', img:'thaiweb-14.mov' },
     { char:'ว', name:'ว แหวน',   rtgs:'w',  initial:'w',  final:'w',  ex:'แหวน',   exMeaning:'ring',         exRTGS:'waen',     emoji:'💍' },
     { char:'ล', name:'ล ลิง',    rtgs:'l',  initial:'l',  final:'n',  ex:'ลิง',    exMeaning:'monkey',       exRTGS:'ling',     emoji:'🐒', img:'thaiweb-8.mov' },
     { char:'ร', name:'ร เรือ',   rtgs:'r',  initial:'r',  final:'n',  ex:'เรือ',   exMeaning:'boat',         exRTGS:'ruea',     emoji:'🚢' },
-    { char:'ย', name:'ย ยักษ์',  rtgs:'y',  initial:'y',  final:'y',  ex:'ยักษ์',  exMeaning:'giant/ogre',   exRTGS:'yak',      emoji:'👹' },
+    { char:'ย', name:'ย ยักษ์',  rtgs:'y',  initial:'y',  final:'y',  ex:'ยักษ์',  exMeaning:'giant/ogre',   exRTGS:'yak',      emoji:'👹', img:'thaiweb-16.mov' },
     { char:'ภ', name:'ภ สำเภา',  rtgs:'ph', initial:'ph', final:'p',  ex:'สำเภา',  exMeaning:'junk (boat)',  exRTGS:'samphao',  emoji:'⛵', lessCommon:true },
     { char:'ฑ', name:'ฑ มณโฑ',   rtgs:'th', initial:'th', final:'t',  ex:'มณโฑ',   exMeaning:'Montho (name)',exRTGS:'monthoo',  emoji:'👸', lessCommon:true },
     { char:'ฒ', name:'ฒ ผู้เฒ่า', rtgs:'th', initial:'th', final:'t', ex:'ผู้เฒ่า', exMeaning:'elder',        exRTGS:'phuu thao',emoji:'👴', lessCommon:true },
@@ -409,8 +448,8 @@ const CONSONANTS = {
     { char:'ฌ', name:'ฌ เฌอ',    rtgs:'ch', initial:'ch', final:'–',  ex:'เฌอ',    exMeaning:'tree',         exRTGS:'choe',     emoji:'🌳', lessCommon:true },
     { char:'ฅ', name:'ฅ คน',     rtgs:'kh', initial:'kh', final:'k',  ex:'คน',     exMeaning:'person',       exRTGS:'khon',     emoji:'🧑', lessCommon:true, obsolete:true },
     { char:'ฆ', name:'ฆ ระฆัง',  rtgs:'kh', initial:'kh', final:'k',  ex:'ระฆัง',  exMeaning:'bell',         exRTGS:'rakhaang', emoji:'🔔', lessCommon:true },
-    { char:'ณ', name:'ณ เณร',    rtgs:'n',  initial:'n',  final:'n',  ex:'เณร',    exMeaning:'novice monk',  exRTGS:'nen',      emoji:'🧘', lessCommon:true },
-    { char:'ฬ', name:'ฬ จุฬา',   rtgs:'l',  initial:'l',  final:'n',  ex:'จุฬา',   exMeaning:'kite',         exRTGS:'chulaa',   emoji:'🪁', lessCommon:true },
+    { char:'ณ', name:'ณ เณร',    rtgs:'n',  initial:'n',  final:'n',  ex:'เณร',    exMeaning:'novice monk',  exRTGS:'neen',      emoji:'🧘', lessCommon:true, img:'thaiweb-15.jpeg' },
+    { char:'ฬ', name:'ฬ จุฬา',   rtgs:'l',  initial:'l',  final:'n',  ex:'จุฬา',   exMeaning:'kite',         exRTGS:'culaa',   emoji:'🪁', lessCommon:true },
     { char:'ญ', name:'ญ หญิง',   rtgs:'y',  initial:'y',  final:'n',  ex:'หญิง',   exMeaning:'woman',        exRTGS:'ying',     emoji:'👩', lessCommon:true },
   ]
 };
@@ -698,6 +737,115 @@ document.querySelectorAll('.class-tab').forEach(btn => {
 renderConsonants('high');
 
 // ══════════════════════════════════════════════════════════════════
+//  VOWEL DISPLAY HELPER (used by both Scripts and Vowel renderers)
+// ══════════════════════════════════════════════════════════════════
+// Above/below diacritics in Thai — no dash needed; the mark speaks for itself
+const THAI_ABOVE_BELOW = /^[\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]+$/;
+function toDispStr(display) {
+  return display.replace(/◌([\s\S]*)/, (_, after) => {
+    if (!after) return '-';
+    return THAI_ABOVE_BELOW.test(after) ? after : '-' + after;
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  SCRIPTS COMPARISON RENDERING
+// ══════════════════════════════════════════════════════════════════
+function makeScriptsSectionTitle(text) {
+  const el = document.createElement('div');
+  el.className = 'scripts-class-title';
+  el.textContent = text;
+  return el;
+}
+
+function renderScripts() {
+  const container = document.getElementById('scriptsContent');
+  container.innerHTML = '';
+
+  // ── Section header: Consonants ──────────────────────────────────
+  const consHeader = document.createElement('div');
+  consHeader.className = 'scripts-section-header';
+  consHeader.textContent = '── Consonants ──────────────────────────────────';
+  container.appendChild(consHeader);
+
+  const classes = [
+    { key:'high', label:'High Class · อักษรสูง · 11 consonants', cls:'high-sc' },
+    { key:'mid',  label:'Mid Class · อักษรกลาง · 9 consonants',  cls:'mid-sc'  },
+    { key:'low',  label:'Low Class · อักษรต่ำ · 24 consonants',  cls:'low-sc'  },
+  ];
+  classes.forEach(({ key, label, cls }) => {
+    container.appendChild(makeScriptsSectionTitle(label));
+    const grid = document.createElement('div');
+    grid.className = 'scripts-grid';
+    CONSONANTS[key].forEach(c => {
+      const card = document.createElement('div');
+      card.className = `scripts-card ${cls}`;
+      card.innerHTML = `
+        <div class="scripts-row">
+          <div>
+            <div class="scripts-char looped">${c.char}</div>
+            <div class="scripts-label">Looped</div>
+          </div>
+          <div class="scripts-divider"></div>
+          <div>
+            <div class="scripts-char loopless">${c.char}</div>
+            <div class="scripts-label">Loopless</div>
+          </div>
+        </div>
+        <div class="scripts-name">${c.name}</div>
+        <div class="scripts-rtgs">/${c.rtgs}/</div>`;
+      card.addEventListener('click', () => { speak(c.char); });
+      grid.appendChild(card);
+    });
+    container.appendChild(grid);
+  });
+
+  // ── Section header: Vowels ──────────────────────────────────────
+  const vowHeader = document.createElement('div');
+  vowHeader.className = 'scripts-section-header';
+  vowHeader.style.marginTop = '32px';
+  vowHeader.textContent = '── Vowels ──────────────────────────────────────';
+  container.appendChild(vowHeader);
+
+  // Group vowels by their group
+  const groups = {};
+  VOWELS.forEach(v => {
+    if (!groups[v.group]) groups[v.group] = [];
+    // Avoid duplicates (อัว and อือ appear in Sara Prasom AND Sara Plian Ruup)
+    if (!groups[v.group].find(x => x.char === v.char)) groups[v.group].push(v);
+  });
+
+  Object.entries(groups).forEach(([groupName, vowels]) => {
+    container.appendChild(makeScriptsSectionTitle(groupName + ' · ' + vowels[0].groupThai));
+    const grid = document.createElement('div');
+    grid.className = 'scripts-grid';
+    vowels.forEach(v => {
+      const dispStr = toDispStr(v.display);
+      const card = document.createElement('div');
+      card.className = 'scripts-card vowel-sc';
+      card.innerHTML = `
+        <div class="scripts-row">
+          <div>
+            <div class="scripts-char looped">${dispStr}</div>
+            <div class="scripts-label">Looped</div>
+          </div>
+          <div class="scripts-divider"></div>
+          <div>
+            <div class="scripts-char loopless">${dispStr}</div>
+            <div class="scripts-label">Loopless</div>
+          </div>
+        </div>
+        <div class="scripts-rtgs">/${v.rtgs}/</div>
+        <div class="scripts-name" style="color:var(--text-muted)">${v.ex} · ${v.exMeaning}</div>`;
+      card.addEventListener('click', () => { speak(v.char); });
+      grid.appendChild(card);
+    });
+    container.appendChild(grid);
+  });
+}
+renderScripts();
+
+// ══════════════════════════════════════════════════════════════════
 //  VOWEL RENDERING
 // ══════════════════════════════════════════════════════════════════
 const GROUP_NOTES = {
@@ -707,14 +855,6 @@ const GROUP_NOTES = {
   'Sara Plian Ruup': 'สระเปลี่ยนรูป — change their written form when a final consonant is added (arrow → shows changed form)',
   'Special Vowels':  'สระเฉพาะ — vowels with special or irregular written forms',
 };
-// Above/below diacritics in Thai — no dash needed; the mark speaks for itself
-const THAI_ABOVE_BELOW = /^[\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]+$/;
-function toDispStr(display) {
-  return display.replace(/◌([\s\S]*)/, (_, after) => {
-    if (!after) return '-';                         // ◌ with nothing after → dash
-    return THAI_ABOVE_BELOW.test(after) ? after : '-' + after; // pure diacritic → no dash
-  });
-}
 
 function renderVowels() {
   const container = document.getElementById('vowelContent');
