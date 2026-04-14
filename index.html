@@ -324,14 +324,14 @@
         <div class="tone-example">น้ำ</div>
         <div class="tone-example-en">water</div>
       </div>
-      <div class="tone-card tone-rise" onclick="speak('หมา')">
+      <div class="tone-card tone-rise" onclick="speak('สาม')">
         <div class="tone-num-badge">Tone 5</div>
         <span class="tone-name-th">จัตวา</span>
         <div class="tone-name-en">Rising</div>
         <div class="tone-rtgs">jattawaa · mark: ๋</div>
         <div class="tone-pitch">↗</div>
-        <div class="tone-example">หมา</div>
-        <div class="tone-example-en">dog</div>
+        <div class="tone-example">สาม</div>
+        <div class="tone-example-en">three</div>
       </div>
     </div>
     <div class="tones-block-title">Tone Marks (วรรณยุกต์)</div>
@@ -352,7 +352,7 @@
           <tr><td><span class="t-num">3</span></td><td><span class="t-class-low">Low</span></td><td>Live</td><td>้ (máy thoo)</td><td><span class="t-high">High ตรี</span></td><td><span class="tone-ex-thai">น้า</span> — aunt/uncle</td></tr>
           <tr><td><span class="t-num">4</span></td><td><span class="t-class-low">Low</span></td><td>Dead — short vowel</td><td>None</td><td><span class="t-high">High ตรี</span></td><td><span class="tone-ex-thai">นก</span> — bird</td></tr>
           <tr><td><span class="t-num">5</span></td><td><span class="t-class-low">Low</span></td><td>Dead — long vowel</td><td>None</td><td><span class="t-fall">Falling โท</span></td><td><span class="tone-ex-thai">นาก</span> — otter</td></tr>
-          <tr><td><span class="t-num">6</span></td><td><span class="t-class-high">High</span></td><td>Live</td><td>None</td><td><span class="t-rise">Rising จัตวา</span></td><td><span class="tone-ex-thai">หมา</span> — dog</td></tr>
+          <tr><td><span class="t-num">6</span></td><td><span class="t-class-high">High</span></td><td>Live</td><td>None</td><td><span class="t-rise">Rising จัตวา</span></td><td><span class="tone-ex-thai">สาม</span> — three</td></tr>
           <tr><td><span class="t-num">7</span></td><td><span class="t-class-high">High</span></td><td>Live</td><td>่ (máy èek)</td><td><span class="t-low">Low เอก</span></td><td><span class="tone-ex-thai">ผ่า</span> — to cut open</td></tr>
           <tr><td><span class="t-num">8</span></td><td><span class="t-class-high">High</span></td><td>Live</td><td>้ (máy thoo)</td><td><span class="t-fall">Falling โท</span></td><td><span class="tone-ex-thai">ข้าว</span> — rice</td></tr>
           <tr><td><span class="t-num">9</span></td><td><span class="t-class-high">High</span></td><td>Dead (any)</td><td>None</td><td><span class="t-low">Low เอก</span></td><td><span class="tone-ex-thai">สก</span> — dirty</td></tr>
@@ -467,7 +467,7 @@ const VOWELS = [
   { group:'Short Vowels', groupThai:'สระเสียงสั้น', char:'แอะ',  display:'แ◌ะ',  rtgs:'ae',  type:'short', ex:'แกะ',  exMeaning:'sheep' },
   { group:'Short Vowels', groupThai:'สระเสียงสั้น', char:'โอะ',  display:'โ◌ะ',  rtgs:'o',   type:'short', ex:'โต๊ะ', exMeaning:'table' },
   { group:'Short Vowels', groupThai:'สระเสียงสั้น', char:'เอาะ', display:'เ◌าะ', rtgs:'or',  type:'short', ex:'เกาะ', exMeaning:'island' },
-  { group:'Short Vowels', groupThai:'สระเสียงสั้น', char:'เออะ', display:'เ◌อะ', rtgs:'oe',  type:'short', ex:'เบอะ', exMeaning:'blurry' },
+  { group:'Short Vowels', groupThai:'สระเสียงสั้น', char:'เออะ', display:'เ◌อะ', rtgs:'oe',  type:'short', ex:'เบอะ', exMeaning:'blurry', speakAs:'เออ' },
   // Long Vowels (7 — อือ and เออ moved to Sara Plian Ruup)
   { group:'Long Vowels', groupThai:'สระเสียงยาว', char:'อา',  display:'◌า',  rtgs:'aa',  type:'long', ex:'มา',   exMeaning:'to come' },
   { group:'Long Vowels', groupThai:'สระเสียงยาว', char:'อี',  display:'◌ี',  rtgs:'ii',  type:'long', ex:'ดี',   exMeaning:'good' },
@@ -479,7 +479,7 @@ const VOWELS = [
   { group:'Long Vowels', groupThai:'สระเสียงยาว', char:'อือ', display:'◌ือ', rtgs:'uue', type:'long', ex:'คือ',  exMeaning:'is/are' },
   { group:'Long Vowels', groupThai:'สระเสียงยาว', char:'เออ', display:'เ◌อ', rtgs:'oe',  type:'long', ex:'เธอ',  exMeaning:'she / you (f)' },
   // Sara Prasom — compound diphthong vowels
-  { group:'Sara Prasom', groupThai:'สระประสม', char:'เอียะ', display:'เ◌ียะ', rtgs:'ia',  type:'short', ex:'เสียะ', exMeaning:'(short ia)' },
+  { group:'Sara Prasom', groupThai:'สระประสม', char:'เอียะ', display:'เ◌ียะ', rtgs:'ia',  type:'short', ex:'เสียะ', exMeaning:'(short ia)', speakAs:'เอีย' },
   { group:'Sara Prasom', groupThai:'สระประสม', char:'เอีย',  display:'เ◌ีย',  rtgs:'ia',  type:'long',  ex:'เสีย',  exMeaning:'to lose' },
   { group:'Sara Prasom', groupThai:'สระประสม', char:'เอือะ', display:'เ◌ือะ', rtgs:'uea', type:'short', ex:'เจือะ', exMeaning:'(short uea)' },
   { group:'Sara Prasom', groupThai:'สระประสม', char:'เอือ',  display:'เ◌ือ',  rtgs:'uea', type:'long',  ex:'เสือ',  exMeaning:'tiger' },
@@ -499,7 +499,7 @@ const VOWELS = [
   { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'เอา', display:'เ◌า', rtgs:'ao',  type:'special', ex:'เขา',  exMeaning:'he/she/mountain' },
   { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'อาว', display:'◌าว', rtgs:'aao', type:'special', ex:'ข้าว', exMeaning:'rice' },
   { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'เอย', display:'เ◌ย', rtgs:'oei', type:'special', ex:'เฉย',  exMeaning:'indifferent' },
-  { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'วย',  display:'◌วย', rtgs:'uai', type:'special', ex:'ด้วย', exMeaning:'also/with' },
+  { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'วย',  display:'◌วย', rtgs:'uai', type:'special', ex:'ด้วย', exMeaning:'also/with', speakAs:'อวย' },
   { group:'Special Vowels', groupThai:'สระเฉพาะ', char:'อิว', display:'◌ิว', rtgs:'io',  type:'special', ex:'ริ้ว',  exMeaning:'stripe/wrinkle' },
 ];
 
@@ -548,6 +548,36 @@ const FLASHCARD_WORDS = [
   { id:'h38', thai:'หนังสือ', rtgs:'nǎngsue',    meaning:'book',            emoji:'📚', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
   { id:'h39', thai:'หิน',     rtgs:'hǐn',        meaning:'rock / stone',    emoji:'🪨', category:'high', vowelLen:'short', feature:'ห · High class /h/' },
   { id:'h40', thai:'เหนื่อย', rtgs:'nùeai',      meaning:'tired',           emoji:'😴', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h41', thai:'ขน',     rtgs:'khǒn',      meaning:'hair / fur',      emoji:'🐱', category:'high', vowelLen:'short', feature:'ข · High class /kh/' },
+  { id:'h42', thai:'ขอ',     rtgs:'khǒr',      meaning:'to ask for / request',emoji:'🙏',category:'high', vowelLen:'long',  feature:'ข · High class /kh/' },
+  { id:'h43', thai:'ขึ้น',   rtgs:'khûen',     meaning:'to go up / rise', emoji:'⬆️', category:'high', vowelLen:'short', feature:'ข · High class /kh/' },
+  { id:'h44', thai:'ขาด',    rtgs:'khâat',     meaning:'to lack / run out',emoji:'✂️', category:'high', vowelLen:'long',  feature:'ข · High class /kh/' },
+  { id:'h45', thai:'เข้า',   rtgs:'khâo',      meaning:'to enter',        emoji:'🚪', category:'high', vowelLen:'long',  feature:'ข · High class /kh/' },
+  { id:'h46', thai:'ถ้า',    rtgs:'thâa',      meaning:'if',              emoji:'🤔', category:'high', vowelLen:'long',  feature:'ถ · High class /th/' },
+  { id:'h47', thai:'ถูก',    rtgs:'thûuk',     meaning:'cheap / correct', emoji:'✅', category:'high', vowelLen:'long',  feature:'ถ · High class /th/' },
+  { id:'h48', thai:'ถอน',    rtgs:'thǒon',     meaning:'to withdraw / pull out',emoji:'💰',category:'high', vowelLen:'long',  feature:'ถ · High class /th/' },
+  { id:'h49', thai:'ผิด',    rtgs:'phìt',      meaning:'wrong / mistaken',emoji:'❌', category:'high', vowelLen:'short', feature:'ผ · High class /ph/' },
+  { id:'h50', thai:'ผ่าน',   rtgs:'phàan',     meaning:'to pass through', emoji:'🚶', category:'high', vowelLen:'long',  feature:'ผ · High class /ph/' },
+  { id:'h51', thai:'สี',     rtgs:'sǐi',       meaning:'colour / four',   emoji:'🎨', category:'high', vowelLen:'long',  feature:'ส · High class /s/' },
+  { id:'h52', thai:'สูง',    rtgs:'sǔung',     meaning:'tall / high',     emoji:'📏', category:'high', vowelLen:'long',  feature:'ส · High class /s/' },
+  { id:'h53', thai:'สั้น',   rtgs:'sân',       meaning:'short (length)',  emoji:'📐', category:'high', vowelLen:'short', feature:'ส · High class /s/' },
+  { id:'h54', thai:'สนุก',   rtgs:'sa-nùk',    meaning:'fun / enjoyable', emoji:'😄', category:'high', vowelLen:'short', feature:'ส · High class /s/' },
+  { id:'h55', thai:'สะอาด',  rtgs:'sa-àat',    meaning:'clean',           emoji:'🧹', category:'high', vowelLen:'long',  feature:'ส · High class /s/' },
+  { id:'h56', thai:'สาย',    rtgs:'sǎai',      meaning:'late / wire / string',emoji:'⏰',category:'high', vowelLen:'long',  feature:'ส · High class /s/' },
+  { id:'h57', thai:'หน้า',   rtgs:'nâa',       meaning:'face / front / next',emoji:'😊',category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h58', thai:'หลาย',   rtgs:'lǎai',      meaning:'many / several',  emoji:'💯', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h59', thai:'หนาว',   rtgs:'nǎao',      meaning:'cold (weather)',  emoji:'🥶', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h60', thai:'หวาน',   rtgs:'wǎan',      meaning:'sweet',           emoji:'🍬', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h61', thai:'หอม',    rtgs:'hǒom',      meaning:'fragrant',        emoji:'🌸', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h62', thai:'หมด',    rtgs:'mòt',       meaning:'finished / all gone',emoji:'🏁',category:'high', vowelLen:'short', feature:'ห · High class /h/' },
+  { id:'h63', thai:'หาย',    rtgs:'hǎai',      meaning:'to disappear / recover',emoji:'🔍',category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h64', thai:'เหลือ',  rtgs:'lǔea',      meaning:'remaining / left over',emoji:'♻️',category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h65', thai:'เหนือ',  rtgs:'nǔea',      meaning:'north / above',   emoji:'🧭', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h66', thai:'เหมือน', rtgs:'mǔean',     meaning:'similar / like',  emoji:'🔄', category:'high', vowelLen:'long',  feature:'ห · High class /h/' },
+  { id:'h67', thai:'หลัก',   rtgs:'làk',       meaning:'main / key',      emoji:'🏛️', category:'high', vowelLen:'short', feature:'ห · High class /h/' },
+  { id:'h68', thai:'ฝาก',    rtgs:'fâak',      meaning:'to deposit / entrust',emoji:'🏦',category:'high', vowelLen:'long',  feature:'ฝ · High class /f/' },
+  { id:'h69', thai:'ขม',     rtgs:'khǒm',      meaning:'bitter',          emoji:'😖', category:'high', vowelLen:'short', feature:'ข · High class /kh/' },
+  { id:'h70', thai:'เสียง',  rtgs:'sǐang',     meaning:'sound / voice',   emoji:'🔊', category:'high', vowelLen:'long',  feature:'ส · High class /s/' },
   // ── MID CLASS ───────────────────────────────────────────────────
   { id:'m01', thai:'กิน',    rtgs:'kin',       meaning:'to eat',          emoji:'🍽️', category:'mid', vowelLen:'short', feature:'ก · Mid class /k/' },
   { id:'m02', thai:'กลับ',   rtgs:'klàp',      meaning:'to return/go back',emoji:'🔄', category:'mid', vowelLen:'short', feature:'ก · Mid class /k/' },
@@ -576,6 +606,42 @@ const FLASHCARD_WORDS = [
   { id:'m25', thai:'อยาก',   rtgs:'yàak',      meaning:'to want',         emoji:'🤩', category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
   { id:'m26', thai:'อ่าน',   rtgs:'àan',       meaning:'to read',         emoji:'📖', category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
   { id:'m27', thai:'อาหาร',  rtgs:'aa-hǎan',   meaning:'food',            emoji:'🍜', category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
+  { id:'m28', thai:'เดือน',  rtgs:'duean',     meaning:'month',           emoji:'🗓️', category:'mid', vowelLen:'long',  feature:'ด · Mid class /d/' },
+  { id:'m29', thai:'กลาง',   rtgs:'klaang',    meaning:'middle / center', emoji:'🎯', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m30', thai:'ดำ',     rtgs:'dam',       meaning:'black',           emoji:'⬛', category:'mid', vowelLen:'long',  feature:'ด · Mid class /d/' },
+  { id:'m31', thai:'ปลา',    rtgs:'plaa',      meaning:'fish',            emoji:'🐟', category:'mid', vowelLen:'long',  feature:'ป · Mid class /p/' },
+  { id:'m32', thai:'ตาม',    rtgs:'taam',      meaning:'to follow',       emoji:'👣', category:'mid', vowelLen:'long',  feature:'ต · Mid class /t/' },
+  { id:'m33', thai:'บน',     rtgs:'bon',       meaning:'on top of / above',emoji:'⬆️',category:'mid', vowelLen:'short', feature:'บ · Mid class /b/' },
+  { id:'m34', thai:'กลม',   rtgs:'klom',      meaning:'round',           emoji:'⭕', category:'mid', vowelLen:'short', feature:'ก · Mid class /k/' },
+  { id:'m35', thai:'กว้าง', rtgs:'kwâang',    meaning:'wide / broad',    emoji:'↔️', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m36', thai:'กอด',   rtgs:'kòot',      meaning:'to hug',          emoji:'🤗', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m37', thai:'ก่อน',  rtgs:'kòon',      meaning:'before / first',  emoji:'⏮️', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m38', thai:'เกิด',  rtgs:'kòet',      meaning:'to be born / to occur',emoji:'👶',category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m39', thai:'เก่ง',  rtgs:'kèng',      meaning:'skilled / good at',emoji:'🌟', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m40', thai:'กล้า',  rtgs:'klâa',      meaning:'to dare / brave', emoji:'💪', category:'mid', vowelLen:'long',  feature:'ก · Mid class /k/' },
+  { id:'m41', thai:'จับ',   rtgs:'jàp',       meaning:'to catch / hold', emoji:'✊', category:'mid', vowelLen:'short', feature:'จ · Mid class /j/' },
+  { id:'m42', thai:'จาก',   rtgs:'jàak',      meaning:'from / to leave', emoji:'🚪', category:'mid', vowelLen:'long',  feature:'จ · Mid class /j/' },
+  { id:'m43', thai:'จ่าย',  rtgs:'jàai',      meaning:'to pay',          emoji:'💳', category:'mid', vowelLen:'long',  feature:'จ · Mid class /j/' },
+  { id:'m44', thai:'จน',    rtgs:'jon',       meaning:'poor / until',    emoji:'😔', category:'mid', vowelLen:'short', feature:'จ · Mid class /j/' },
+  { id:'m45', thai:'ดัง',   rtgs:'dang',      meaning:'loud / famous',   emoji:'📢', category:'mid', vowelLen:'short', feature:'ด · Mid class /d/' },
+  { id:'m46', thai:'เดิม',  rtgs:'doem',      meaning:'original / same as before',emoji:'🔙',category:'mid', vowelLen:'long',  feature:'ด · Mid class /d/' },
+  { id:'m47', thai:'ด้าน',  rtgs:'dâan',      meaning:'side / aspect',   emoji:'🔲', category:'mid', vowelLen:'long',  feature:'ด · Mid class /d/' },
+  { id:'m48', thai:'ต้น',   rtgs:'tôn',       meaning:'tree / beginning',emoji:'🌳', category:'mid', vowelLen:'long',  feature:'ต · Mid class /t/' },
+  { id:'m49', thai:'ตัด',   rtgs:'tàt',       meaning:'to cut',          emoji:'✂️', category:'mid', vowelLen:'short', feature:'ต · Mid class /t/' },
+  { id:'m50', thai:'ตอน',   rtgs:'toon',      meaning:'period / episode / when',emoji:'📺',category:'mid', vowelLen:'long',  feature:'ต · Mid class /t/' },
+  { id:'m51', thai:'ต่าง',  rtgs:'tàang',     meaning:'different / various',emoji:'🔄',category:'mid', vowelLen:'long',  feature:'ต · Mid class /t/' },
+  { id:'m52', thai:'ตื่น',  rtgs:'tùen',      meaning:'to wake up',      emoji:'⏰', category:'mid', vowelLen:'long',  feature:'ต · Mid class /t/' },
+  { id:'m53', thai:'บาท',   rtgs:'bàat',      meaning:'baht (currency)', emoji:'💰', category:'mid', vowelLen:'long',  feature:'บ · Mid class /b/' },
+  { id:'m54', thai:'บ่อย',  rtgs:'bòoi',      meaning:'often / frequently',emoji:'🔁',category:'mid', vowelLen:'long',  feature:'บ · Mid class /b/' },
+  { id:'m55', thai:'แบบ',   rtgs:'bàep',      meaning:'style / type / form',emoji:'📋',category:'mid', vowelLen:'long',  feature:'บ · Mid class /b/' },
+  { id:'m56', thai:'บาง',   rtgs:'baang',     meaning:'thin / some',     emoji:'📉', category:'mid', vowelLen:'long',  feature:'บ · Mid class /b/' },
+  { id:'m57', thai:'ปัญหา', rtgs:'pan-hǎa',   meaning:'problem / issue', emoji:'❗', category:'mid', vowelLen:'short', feature:'ป · Mid class /p/' },
+  { id:'m58', thai:'ป้าย',  rtgs:'pâai',      meaning:'sign / label',    emoji:'🪧', category:'mid', vowelLen:'long',  feature:'ป · Mid class /p/' },
+  { id:'m59', thai:'เปลี่ยน',rtgs:'plìan',    meaning:'to change',       emoji:'🔄', category:'mid', vowelLen:'long',  feature:'ป · Mid class /p/' },
+  { id:'m60', thai:'ประตู', rtgs:'pra-tuu',   meaning:'door / gate',     emoji:'🚪', category:'mid', vowelLen:'long',  feature:'ป · Mid class /p/' },
+  { id:'m61', thai:'เอา',   rtgs:'ao',        meaning:'to take / to want',emoji:'✋',category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
+  { id:'m62', thai:'อีก',   rtgs:'ìik',       meaning:'more / again',    emoji:'➕', category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
+  { id:'m63', thai:'เอง',   rtgs:'eeng',      meaning:'oneself / by itself',emoji:'💁',category:'mid', vowelLen:'long',  feature:'อ · Mid class (silent)' },
   // ── LOW CLASS ───────────────────────────────────────────────────
   { id:'l01', thai:'พ่อ',    rtgs:'phôr',      meaning:'father',          emoji:'👨', category:'low', vowelLen:'long',  feature:'พ · Low class /ph/' },
   { id:'l02', thai:'พี่',    rtgs:'phîi',      meaning:'older sibling',   emoji:'🧑', category:'low', vowelLen:'long',  feature:'พ · Low class /ph/' },
@@ -607,6 +673,46 @@ const FLASHCARD_WORDS = [
   { id:'l28', thai:'ยา',     rtgs:'yaa',       meaning:'medicine',        emoji:'💊', category:'low', vowelLen:'long',  feature:'ย · Low class /y/' },
   { id:'l29', thai:'ยิ้ม',   rtgs:'yím',       meaning:'to smile',        emoji:'😊', category:'low', vowelLen:'short', feature:'ย · Low class /y/' },
   { id:'l30', thai:'วัน',    rtgs:'wan',       meaning:'day',             emoji:'📅', category:'low', vowelLen:'short', feature:'ว · Low class /w/' },
+  { id:'l31', thai:'พอ',    rtgs:'phor',      meaning:'enough / just right',emoji:'👌',category:'low', vowelLen:'long',  feature:'พ · Low class /ph/' },
+  { id:'l32', thai:'พัง',   rtgs:'phang',     meaning:'broken / collapsed',emoji:'💥',category:'low', vowelLen:'short', feature:'พ · Low class /ph/' },
+  { id:'l33', thai:'พระ',   rtgs:'phrá',      meaning:'monk / sacred',   emoji:'🙏', category:'low', vowelLen:'short', feature:'พ · Low class /ph/' },
+  { id:'l34', thai:'เพลง',  rtgs:'phleeng',   meaning:'song / music',    emoji:'🎵', category:'low', vowelLen:'long',  feature:'พ · Low class /ph/' },
+  { id:'l35', thai:'เพื่อ', rtgs:'phûea',     meaning:'for / in order to',emoji:'🎯',category:'low', vowelLen:'long',  feature:'พ · Low class /ph/' },
+  { id:'l36', thai:'ทาง',   rtgs:'thaang',    meaning:'path / way / direction',emoji:'🛣️',category:'low', vowelLen:'long',  feature:'ท · Low class /th/' },
+  { id:'l37', thai:'ทั้ง',  rtgs:'tháng',     meaning:'all / both / entire',emoji:'📦',category:'low', vowelLen:'short', feature:'ท · Low class /th/' },
+  { id:'l38', thai:'ทัน',   rtgs:'than',      meaning:'in time / to keep up',emoji:'⏱️',category:'low', vowelLen:'short', feature:'ท · Low class /th/' },
+  { id:'l39', thai:'ทิ้ง',  rtgs:'thíng',     meaning:'to throw away / abandon',emoji:'🗑️',category:'low', vowelLen:'short', feature:'ท · Low class /th/' },
+  { id:'l40', thai:'ช้า',   rtgs:'cháa',      meaning:'slow',            emoji:'🐢', category:'low', vowelLen:'long',  feature:'ช · Low class /ch/' },
+  { id:'l41', thai:'ชิ้น',  rtgs:'chín',      meaning:'piece / slice',   emoji:'🍕', category:'low', vowelLen:'short', feature:'ช · Low class /ch/' },
+  { id:'l42', thai:'ชาย',   rtgs:'chaai',     meaning:'man / male',      emoji:'👨', category:'low', vowelLen:'long',  feature:'ช · Low class /ch/' },
+  { id:'l43', thai:'ชีวิต', rtgs:'chii-wít',  meaning:'life',            emoji:'✨', category:'low', vowelLen:'short', feature:'ช · Low class /ch/' },
+  { id:'l44', thai:'คำ',    rtgs:'kham',      meaning:'word',            emoji:'💬', category:'low', vowelLen:'long',  feature:'ค · Low class /kh/' },
+  { id:'l45', thai:'ค่า',   rtgs:'khâa',      meaning:'price / fee / value',emoji:'💰',category:'low', vowelLen:'long',  feature:'ค · Low class /kh/' },
+  { id:'l46', thai:'คืน',   rtgs:'khuen',     meaning:'night / to return (sth)',emoji:'🌙',category:'low', vowelLen:'long',  feature:'ค · Low class /kh/' },
+  { id:'l47', thai:'ครับ',  rtgs:'khráp',     meaning:'polite particle (m)',emoji:'🙋',category:'low', vowelLen:'short', feature:'ค · Low class /kh/' },
+  { id:'l48', thai:'เคย',   rtgs:'khoei',     meaning:'used to / ever (past)',emoji:'💭',category:'low', vowelLen:'long',  feature:'ค · Low class /kh/' },
+  { id:'l49', thai:'ใหม่',  rtgs:'mài',       meaning:'new / again',     emoji:'✨', category:'low', vowelLen:'long',  feature:'ม · Low class /m/' },
+  { id:'l50', thai:'มุม',   rtgs:'mum',       meaning:'corner / angle',  emoji:'🔲', category:'low', vowelLen:'short', feature:'ม · Low class /m/' },
+  { id:'l51', thai:'เมื่อ', rtgs:'mûea',      meaning:'when (past)',      emoji:'📅', category:'low', vowelLen:'long',  feature:'ม · Low class /m/' },
+  { id:'l52', thai:'ไม่',   rtgs:'mâi',       meaning:'no / not',        emoji:'🚫', category:'low', vowelLen:'long',  feature:'ม · Low class /m/' },
+  { id:'l53', thai:'แน่',   rtgs:'nâe',       meaning:'certain / sure',  emoji:'✅', category:'low', vowelLen:'long',  feature:'น · Low class /n/' },
+  { id:'l54', thai:'นัก',   rtgs:'nák',       meaning:'expert / very',   emoji:'🌟', category:'low', vowelLen:'short', feature:'น · Low class /n/' },
+  { id:'l55', thai:'น่า',   rtgs:'nâa',       meaning:'worth / should',  emoji:'👍', category:'low', vowelLen:'long',  feature:'น · Low class /n/' },
+  { id:'l56', thai:'นอก',   rtgs:'nôok',      meaning:'outside',         emoji:'🚪', category:'low', vowelLen:'long',  feature:'น · Low class /n/' },
+  { id:'l57', thai:'เนื้อ', rtgs:'núea',      meaning:'meat / flesh',    emoji:'🥩', category:'low', vowelLen:'long',  feature:'น · Low class /n/' },
+  { id:'l58', thai:'ว่า',   rtgs:'wâa',       meaning:'that (conj.) / to say',emoji:'💬',category:'low', vowelLen:'long',  feature:'ว · Low class /w/' },
+  { id:'l59', thai:'วิ่ง',  rtgs:'wîng',      meaning:'to run',          emoji:'🏃', category:'low', vowelLen:'short', feature:'ว · Low class /w/' },
+  { id:'l60', thai:'เวลา',  rtgs:'wee-laa',   meaning:'time / when',     emoji:'⏰', category:'low', vowelLen:'long',  feature:'ว · Low class /w/' },
+  { id:'l61', thai:'ลา',    rtgs:'laa',       meaning:'to say goodbye',  emoji:'👋', category:'low', vowelLen:'long',  feature:'ล · Low class /l/' },
+  { id:'l62', thai:'ลอง',   rtgs:'loong',     meaning:'to try / attempt',emoji:'🔍', category:'low', vowelLen:'long',  feature:'ล · Low class /l/' },
+  { id:'l63', thai:'ลูก',   rtgs:'lûuk',      meaning:'child / offspring',emoji:'👶',category:'low', vowelLen:'long',  feature:'ล · Low class /l/' },
+  { id:'l64', thai:'ลง',    rtgs:'long',      meaning:'to go down / decrease',emoji:'⬇️',category:'low', vowelLen:'short', feature:'ล · Low class /l/' },
+  { id:'l65', thai:'รอ',    rtgs:'ror',       meaning:'to wait',         emoji:'⏳', category:'low', vowelLen:'long',  feature:'ร · Low class /r/' },
+  { id:'l66', thai:'รู้',   rtgs:'rúu',       meaning:'to know',         emoji:'💡', category:'low', vowelLen:'long',  feature:'ร · Low class /r/' },
+  { id:'l67', thai:'ราคา',  rtgs:'raa-khaa',  meaning:'price / cost',    emoji:'💲', category:'low', vowelLen:'long',  feature:'ร · Low class /r/' },
+  { id:'l68', thai:'ยัง',   rtgs:'yang',      meaning:'still / yet',     emoji:'⏳', category:'low', vowelLen:'short', feature:'ย · Low class /y/' },
+  { id:'l69', thai:'ยาก',   rtgs:'yâak',      meaning:'difficult / hard',emoji:'😤', category:'low', vowelLen:'long',  feature:'ย · Low class /y/' },
+  { id:'l70', thai:'งาน',   rtgs:'ngaan',     meaning:'work / event / job',emoji:'💼',category:'low', vowelLen:'long',  feature:'ง · Low class /ng/' },
   // ── SHORT VOWELS ────────────────────────────────────────────────
   { id:'sv01', thai:'กะ',    rtgs:'kà',        meaning:'shrimp paste',    emoji:'🍤', category:'short-vowel', feature:'◌ะ short /a/' },
   { id:'sv02', thai:'กิน',   rtgs:'kin',       meaning:'to eat',          emoji:'🍽️', category:'short-vowel', feature:'◌ิ short /i/' },
@@ -623,6 +729,41 @@ const FLASHCARD_WORDS = [
   { id:'sv13', thai:'บิน',   rtgs:'bin',       meaning:'to fly',          emoji:'✈️', category:'short-vowel', feature:'◌ิ short /i/ + final' },
   { id:'sv14', thai:'ดิน',   rtgs:'din',       meaning:'soil / earth',    emoji:'🌍', category:'short-vowel', feature:'◌ิ short /i/ + final' },
   { id:'sv15', thai:'หมู',   rtgs:'mǔu',       meaning:'pig',             emoji:'🐷', category:'short-vowel', feature:'◌ุ short /u/' },
+  { id:'sv16', thai:'เร็ว',  rtgs:'reo',       meaning:'fast / quick',    emoji:'⚡', category:'short-vowel', feature:'เ◌็ short /e/' },
+  { id:'sv17', thai:'เล็ก',  rtgs:'lék',       meaning:'small / little',  emoji:'🔍', category:'short-vowel', feature:'เ◌็ short /e/' },
+  { id:'sv18', thai:'หนัก',  rtgs:'nàk',       meaning:'heavy',           emoji:'⚖️', category:'short-vowel', feature:'◌ั short /a/ + final' },
+  { id:'sv19', thai:'หนึ่ง', rtgs:'nùeng',     meaning:'one',             emoji:'1️⃣', category:'short-vowel', feature:'◌ึ short /ue/' },
+  { id:'sv20', thai:'พัก',   rtgs:'phák',      meaning:'to rest',         emoji:'😌', category:'short-vowel', feature:'◌ั short /a/ + final' },
+  { id:'sv21', thai:'เย็น',  rtgs:'yen',       meaning:'cool / evening',  emoji:'🌆', category:'short-vowel', feature:'เ◌็น short /e/ + final' },
+  { id:'sv22', thai:'วัด',   rtgs:'wát',       meaning:'temple',          emoji:'🛕', category:'short-vowel', feature:'◌ั short /a/ + final' },
+  { id:'sv23', thai:'สด',    rtgs:'sòt',       meaning:'fresh',           emoji:'🌿', category:'short-vowel', feature:'◌(ะ) short /o/ implicit' },
+  { id:'sv24', thai:'สิ่ง',  rtgs:'sìng',      meaning:'thing / object',  emoji:'📦', category:'short-vowel', feature:'◌ิ short /i/ + final' },
+  { id:'sv25', thai:'สุข',   rtgs:'sùk',       meaning:'happiness',       emoji:'😊', category:'short-vowel', feature:'◌ุ short /u/ + final' },
+  { id:'sv26', thai:'ตก',   rtgs:'tòk',       meaning:'to fall / to drop',emoji:'💧', category:'short-vowel', feature:'◌(ะ) short /o/ dead' },
+  { id:'sv27', thai:'ขม',   rtgs:'khǒm',      meaning:'bitter',           emoji:'😖', category:'short-vowel', feature:'◌(ะ) short /o/ + final' },
+  { id:'sv28', thai:'ติด',  rtgs:'tìt',       meaning:'stuck / to contact',emoji:'📌',category:'short-vowel', feature:'◌ิ short /i/ dead' },
+  { id:'sv29', thai:'ทุก',  rtgs:'thúk',      meaning:'every / all',      emoji:'🔢', category:'short-vowel', feature:'◌ุ short /u/ dead' },
+  { id:'sv30', thai:'คุณ',  rtgs:'khun',      meaning:'you (polite) / goodness',emoji:'👤',category:'short-vowel', feature:'◌ุ short /u/ + final' },
+  { id:'sv31', thai:'เต็ม', rtgs:'tem',       meaning:'full / complete',  emoji:'💯', category:'short-vowel', feature:'เ◌็ short /e/ + final' },
+  { id:'sv32', thai:'แพะ',  rtgs:'pháe',      meaning:'goat',             emoji:'🐐', category:'short-vowel', feature:'แ◌ะ short /ae/' },
+  { id:'sv33', thai:'กัน',  rtgs:'kan',       meaning:'each other / together',emoji:'🤝',category:'short-vowel', feature:'◌ั short /a/ + final' },
+  { id:'sv34', thai:'นับ',  rtgs:'náp',       meaning:'to count',         emoji:'🔢', category:'short-vowel', feature:'◌ั short /a/ dead' },
+  { id:'sv35', thai:'จัด',  rtgs:'jàt',       meaning:'to arrange / organise',emoji:'📋',category:'short-vowel', feature:'◌ั short /a/ dead' },
+  { id:'sv36', thai:'กิ่ง', rtgs:'kìng',      meaning:'branch (of tree)', emoji:'🌿', category:'short-vowel', feature:'◌ิ short /i/ + final' },
+  { id:'sv37', thai:'จิต',  rtgs:'jìt',       meaning:'mind / spirit',    emoji:'🧠', category:'short-vowel', feature:'◌ิ short /i/ dead' },
+  { id:'sv38', thai:'ทุน',  rtgs:'thun',      meaning:'fund / capital',   emoji:'💰', category:'short-vowel', feature:'◌ุ short /u/ + final' },
+  { id:'sv39', thai:'เสร็จ',rtgs:'sèt',       meaning:'finished / done',  emoji:'✅', category:'short-vowel', feature:'เ◌็ short /e/ dead' },
+  { id:'sv40', thai:'เข็ม', rtgs:'khěm',      meaning:'needle',           emoji:'🪡', category:'short-vowel', feature:'เ◌็ short /e/ + final' },
+  { id:'sv41', thai:'แถม',  rtgs:'thǎem',     meaning:'as a bonus / to add extra',emoji:'🎁',category:'short-vowel', feature:'แ◌ะ short /ae/ + final' },
+  { id:'sv42', thai:'สับ',  rtgs:'sàp',       meaning:'to chop / shuffle',emoji:'🔪', category:'short-vowel', feature:'◌ั short /a/ dead' },
+  { id:'sv43', thai:'ขัน',  rtgs:'khǎn',      meaning:'funny / amusing',  emoji:'😄', category:'short-vowel', feature:'◌ั short /a/ + final' },
+  { id:'sv44', thai:'ลบ',   rtgs:'lóp',       meaning:'to erase / subtract',emoji:'✏️',category:'short-vowel', feature:'◌(ะ) short /o/ dead' },
+  { id:'sv45', thai:'พก',   rtgs:'phók',      meaning:'to carry (in pocket)',emoji:'🎒',category:'short-vowel', feature:'◌(ะ) short /o/ dead' },
+  { id:'sv46', thai:'จม',   rtgs:'jom',       meaning:'to sink',          emoji:'🌊', category:'short-vowel', feature:'◌(ะ) short /o/ + final' },
+  { id:'sv47', thai:'ริม',  rtgs:'rim',       meaning:'edge / beside',    emoji:'🏞️', category:'short-vowel', feature:'◌ิ short /i/ + final' },
+  { id:'sv48', thai:'หนุ่ม',rtgs:'nùm',       meaning:'young man',        emoji:'👦', category:'short-vowel', feature:'◌ุ short /u/ + final' },
+  { id:'sv49', thai:'ปัก',  rtgs:'pàk',       meaning:'to plant / to pin',emoji:'📌', category:'short-vowel', feature:'◌ั short /a/ dead' },
+  { id:'sv50', thai:'ยก',   rtgs:'yók',       meaning:'to lift / to raise',emoji:'💪',category:'short-vowel', feature:'◌(ะ) short /o/ dead' },
   // ── LONG VOWELS ─────────────────────────────────────────────────
   { id:'lv01', thai:'มา',    rtgs:'maa',       meaning:'to come',         emoji:'👋', category:'long-vowel', feature:'◌า long /aa/' },
   { id:'lv02', thai:'ข้าว',  rtgs:'khâao',     meaning:'rice',            emoji:'🍚', category:'long-vowel', feature:'◌า long /aa/' },
@@ -640,6 +781,40 @@ const FLASHCARD_WORDS = [
   { id:'lv14', thai:'เธอ',   rtgs:'thoe',      meaning:'she / you (f)',   emoji:'👩', category:'long-vowel', feature:'เ◌อ long /oe/' },
   { id:'lv15', thai:'เดิน',  rtgs:'doen',      meaning:'to walk',         emoji:'🚶', category:'long-vowel', feature:'เ◌ิ long /oe/ + final' },
   { id:'lv16', thai:'ลืม',   rtgs:'luem',      meaning:'to forget',       emoji:'🤔', category:'long-vowel', feature:'◌ื long /uue/ + final' },
+  { id:'lv17', thai:'เพื่อน',rtgs:'phûean',    meaning:'friend',          emoji:'👫', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv18', thai:'เรียน', rtgs:'rian',      meaning:'to study / learn',emoji:'📚', category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv19', thai:'น้อง',  rtgs:'nông',      meaning:'younger sibling', emoji:'🧒', category:'long-vowel', feature:'◌อ long /or/' },
+  { id:'lv20', thai:'ยาว',   rtgs:'yaao',      meaning:'long (length)',   emoji:'📏', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv21', thai:'เมือง', rtgs:'mueang',    meaning:'city / town',     emoji:'🏙️', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv22', thai:'เสีย',  rtgs:'sǐa',       meaning:'broken / to lose',emoji:'💔', category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv23', thai:'เรือ',  rtgs:'ruea',      meaning:'boat / ship',     emoji:'⛵', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv24', thai:'ป่า',   rtgs:'pàa',       meaning:'forest / jungle', emoji:'🌳', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv25', thai:'โรง',   rtgs:'roong',     meaning:'building / hall', emoji:'🏛️', category:'long-vowel', feature:'โ◌ long /oo/' },
+  { id:'lv26', thai:'กาว',  rtgs:'kaao',      meaning:'glue',            emoji:'🔧', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv27', thai:'หมา',  rtgs:'mǎa',       meaning:'dog (informal)',   emoji:'🐕', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv28', thai:'ตี',   rtgs:'tii',       meaning:'to beat / to hit',emoji:'🥊', category:'long-vowel', feature:'◌ี long /ii/' },
+  { id:'lv29', thai:'ผี',   rtgs:'phǐi',      meaning:'ghost / spirit',  emoji:'👻', category:'long-vowel', feature:'◌ี long /ii/' },
+  { id:'lv30', thai:'เสื้อ',rtgs:'sûea',      meaning:'shirt / blouse',  emoji:'👕', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv31', thai:'เรื่อง',rtgs:'rûeang',   meaning:'matter / story',  emoji:'📖', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv32', thai:'เมีย', rtgs:'mia',       meaning:'wife (informal)', emoji:'👩', category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv33', thai:'เจอ',  rtgs:'joe',       meaning:'to meet / encounter',emoji:'🤝',category:'long-vowel', feature:'เ◌อ long /oe/' },
+  { id:'lv34', thai:'โกรธ', rtgs:'kroot',     meaning:'angry',           emoji:'😡', category:'long-vowel', feature:'โ◌ long /oo/' },
+  { id:'lv35', thai:'มอง',  rtgs:'moong',     meaning:'to look / stare', emoji:'👀', category:'long-vowel', feature:'◌อ long /or/' },
+  { id:'lv36', thai:'ของ',  rtgs:'khǒong',    meaning:'of / belongings', emoji:'🎁', category:'long-vowel', feature:'◌อ long /or/' },
+  { id:'lv37', thai:'รูป',  rtgs:'rûup',      meaning:'picture / shape', emoji:'📷', category:'long-vowel', feature:'◌ู long /uu/' },
+  { id:'lv38', thai:'บ่าย', rtgs:'bàai',      meaning:'afternoon',       emoji:'☀️', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv39', thai:'รอบ',  rtgs:'rôop',      meaning:'round / surrounding',emoji:'🔄',category:'long-vowel', feature:'◌อ long /or/' },
+  { id:'lv40', thai:'นาน',  rtgs:'naan',      meaning:'long time',       emoji:'⏳', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv41', thai:'เบื่อ',rtgs:'bùea',      meaning:'bored / fed up',  emoji:'😪', category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv42', thai:'แรง',  rtgs:'raeng',     meaning:'strong / forceful',emoji:'💪',category:'long-vowel', feature:'แ◌ long /ae/' },
+  { id:'lv43', thai:'แก่',  rtgs:'kàe',       meaning:'old (of a person)',emoji:'👴',category:'long-vowel', feature:'แ◌ long /ae/' },
+  { id:'lv44', thai:'เสียง',rtgs:'sǐang',     meaning:'sound / voice',   emoji:'🔊', category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv45', thai:'เลือก',rtgs:'lûeak',     meaning:'to choose / select',emoji:'🔘',category:'long-vowel', feature:'เ◌ือ long /uea/' },
+  { id:'lv46', thai:'ล้อม', rtgs:'lôom',      meaning:'to surround',     emoji:'⭕', category:'long-vowel', feature:'◌อ long /or/' },
+  { id:'lv47', thai:'สาว',  rtgs:'sǎao',      meaning:'young woman',     emoji:'👩', category:'long-vowel', feature:'◌า long /aa/' },
+  { id:'lv48', thai:'เดียว',rtgs:'diao',      meaning:'alone / single',  emoji:'1️⃣', category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv49', thai:'เรียก',rtgs:'rîak',      meaning:'to call / to summon',emoji:'📢',category:'long-vowel', feature:'เ◌ีย long /ia/' },
+  { id:'lv50', thai:'ใกล้', rtgs:'klâi',      meaning:'near / close',    emoji:'📍', category:'long-vowel', feature:'ใ◌ special + long /ai/' },
 ];
 
 // ══════════════════════════════════════════════════════════════════
@@ -915,7 +1090,7 @@ function renderVowels() {
       }
       // Click → speak the vowel sound (not the example word)
       card.addEventListener('click', () => {
-        speak(v.char);
+        speak(v.speakAs || v.char);
         card.classList.add('speaking');
         setTimeout(() => card.classList.remove('speaking'), 900);
       });
