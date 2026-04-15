@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thai Basics 🇹🇭 – Learn Thai Alphabet & Vocabulary</title>
+  <title>ThaiSnap – Learn Thai Alphabet & Vocabulary</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,9 +22,13 @@
     body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
     /* HEADER */
-    header { background: var(--accent); color:#fff; padding:24px 24px 20px; text-align:center; border-bottom:4px solid var(--accent-dark); }
-    header h1 { font-size:1.9rem; font-weight:900; letter-spacing:-0.3px; }
-    header p  { font-size:0.92rem; opacity:0.88; margin-top:4px; font-weight:600; }
+    header { background: var(--accent); color:#fff; padding:20px 24px 18px; text-align:center; border-bottom:4px solid var(--accent-dark); }
+    .logo-lockup { display:inline-flex; align-items:center; gap:13px; margin-bottom:8px; }
+    .logo-mark { font-family:'Sarabun',sans-serif; font-size:1.75rem; font-weight:700; background:#fff; color:var(--accent); border-radius:12px; width:50px; height:50px; display:flex; align-items:center; justify-content:center; flex-shrink:0; line-height:1; }
+    .logo-wordmark { font-size:2rem; font-weight:900; letter-spacing:-0.5px; line-height:1; }
+    .logo-thai { color:#fff; }
+    .logo-snap { color:rgba(255,255,255,0.6); }
+    header p  { font-size:0.88rem; opacity:0.8; margin-top:0; font-weight:600; }
 
     /* MAIN TABS */
     .main-tabs { display:flex; justify-content:center; background:#fff; border-bottom:3px solid var(--border); position:sticky; top:0; z-index:50; }
@@ -129,7 +133,7 @@
     .scripts-section-header { font-size:0.78rem; color:var(--text-muted); letter-spacing:0.04em; margin:8px 0 4px; opacity:0.5; }
 
     /* FLASHCARDS */
-    .fc-header { background:linear-gradient(135deg,#1e40af,#7c3aed); border-radius:var(--radius); padding:20px 22px; color:#fff; margin-bottom:20px; }
+    .fc-header { background:var(--accent); border-radius:var(--radius); border-bottom:4px solid var(--accent-dark); padding:20px 22px; color:#fff; margin-bottom:20px; }
     .fc-header h2 { font-size:1.2rem; font-weight:700; margin-bottom:4px; }
     .fc-header p  { font-size:0.85rem; opacity:0.85; margin-bottom:14px; }
     .progress-bar-bg { background:rgba(255,255,255,0.25); border-radius:999px; height:8px; margin-bottom:8px; }
@@ -236,7 +240,7 @@
 
     /* RESPONSIVE */
     @media(max-width:600px){
-      header h1 { font-size:1.5rem; }
+      .logo-wordmark { font-size:1.6rem; } .logo-mark { width:42px; height:42px; font-size:1.5rem; }
       .consonant-grid { grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:10px; }
       .fc-thai { font-size:2.4rem; } .fc-wrapper { height:270px; }
       .main-tab { font-size:0.78rem; padding:12px 6px; }
@@ -251,8 +255,11 @@
 </head>
 <body>
 <header>
-  <h1>🇹🇭 Thai Basics</h1>
-  <p>Learn the Thai alphabet · 44 consonants · 32 vowels · Tones · Daily vocabulary</p>
+  <div class="logo-lockup">
+    <div class="logo-mark">ก</div>
+    <div class="logo-wordmark"><span class="logo-thai">Thai</span><span class="logo-snap">Snap</span></div>
+  </div>
+  <p>Learn the Thai alphabet · consonants · vowels · tones · flashcards</p>
 </header>
 
 <nav class="main-tabs" id="mainTabs">
