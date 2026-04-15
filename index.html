@@ -120,7 +120,7 @@
     .scripts-card.high-sc { border-top:3px solid var(--high); }
     .scripts-card.mid-sc  { border-top:3px solid var(--mid); }
     .scripts-card.low-sc  { border-top:3px solid var(--low); }
-    .scripts-row { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:8px; }
+    .scripts-row { display:flex; justify-content:center; align-items:baseline; gap:10px; margin-bottom:8px; }
     .scripts-char { font-size:2.4rem; line-height:1.2; }
     .scripts-char.looped    { font-family:'Sarabun', serif; color:var(--text); }
     .scripts-char.loopless  { font-family:'Noto Sans Thai', sans-serif; color:#92400e; }
@@ -272,7 +272,6 @@
     </div>
     <div class="logo-wordmark"><span class="logo-thai">Thai</span><span class="logo-snap">Snap</span></div>
   </div>
-  <p>Learn the Thai alphabet · consonants · vowels · tones · flashcards</p>
 </header>
 
 <nav class="main-tabs" id="mainTabs">
@@ -287,10 +286,7 @@
   <!-- CONSONANTS -->
   <section class="section active" id="tab-consonants">
     <div class="class-info">
-      Thai has <strong>44 consonants</strong> in three classes that determine syllable tone.
-      <strong>High (อักษรสูง)</strong> — 11. <strong>Mid (อักษรกลาง)</strong> — 9. <strong>Low (อักษรต่ำ)</strong> — 24.
-      Cards marked <span style="background:#f5f3ff;color:#6d28d9;font-size:0.75rem;padding:1px 6px;border-radius:999px;font-weight:700">less common</span> appear rarely in everyday Thai.
-      Click any card to hear the example word. 🔊
+      Thai has <strong>44 consonants</strong> in three classes that determine syllable tone. Click any card to hear the example word. 🔊
     </div>
     <div id="noTtsConsonant" class="no-tts-msg">Thai TTS not available. Try Chrome or Safari on macOS/iOS.</div>
     <div class="class-tabs">
@@ -987,18 +983,10 @@ function renderScripts() {
       card.className = `scripts-card ${cls}`;
       card.innerHTML = `
         <div class="scripts-row">
-          <div>
-            <div class="scripts-char looped">${c.char}</div>
-            <div class="scripts-label">Looped</div>
-          </div>
+          <div><div class="scripts-char looped">${c.char}</div></div>
           <div class="scripts-divider"></div>
-          <div>
-            <div class="scripts-char loopless">${c.char}</div>
-            <div class="scripts-label">Loopless</div>
-          </div>
-        </div>
-        <div class="scripts-name">${c.name}</div>
-        <div class="scripts-rtgs">/${c.rtgs}/</div>`;
+          <div><div class="scripts-char loopless">${c.char}</div></div>
+        </div>`;
       card.addEventListener('click', () => { speak(c.char); });
       grid.appendChild(card);
     });
@@ -1030,18 +1018,10 @@ function renderScripts() {
       card.className = 'scripts-card vowel-sc';
       card.innerHTML = `
         <div class="scripts-row">
-          <div>
-            <div class="scripts-char looped">${dispStr}</div>
-            <div class="scripts-label">Looped</div>
-          </div>
+          <div><div class="scripts-char looped">${v.char}</div></div>
           <div class="scripts-divider"></div>
-          <div>
-            <div class="scripts-char loopless">${dispStr}</div>
-            <div class="scripts-label">Loopless</div>
-          </div>
-        </div>
-        <div class="scripts-rtgs">/${v.rtgs}/</div>
-        <div class="scripts-name" style="color:var(--text-muted)">${v.ex} · ${v.exMeaning}</div>`;
+          <div><div class="scripts-char loopless">${v.char}</div></div>
+        </div>`;
       card.addEventListener('click', () => { speak(v.char); });
       grid.appendChild(card);
     });
