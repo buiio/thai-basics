@@ -24,7 +24,7 @@
     /* HEADER */
     header { background: var(--accent); color:#fff; padding:20px 24px 18px; text-align:center; border-bottom:4px solid var(--accent-dark); }
     .logo-lockup { display:inline-flex; align-items:center; gap:13px; margin-bottom:8px; }
-    .logo-mark { background:#fff; border-radius:14px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; padding:4px; }
+    .logo-mark { background:transparent; width:52px; height:56px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .logo-wordmark { font-size:2rem; font-weight:900; letter-spacing:-0.5px; line-height:1; }
     .logo-thai { color:#fff; }
     .logo-snap { color:rgba(255,255,255,0.6); }
@@ -240,7 +240,7 @@
 
     /* RESPONSIVE */
     @media(max-width:600px){
-      .logo-wordmark { font-size:1.6rem; } .logo-mark { width:44px; height:44px; } .logo-mark svg { width:38px; height:38px; }
+      .logo-wordmark { font-size:1.6rem; } .logo-mark { width:42px; height:46px; } .logo-mark svg { width:42px; height:46px; }
       .consonant-grid { grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:10px; }
       .fc-thai { font-size:2.4rem; } .fc-wrapper { height:270px; }
       .main-tab { font-size:0.78rem; padding:12px 6px; }
@@ -257,21 +257,17 @@
 <header>
   <div class="logo-lockup">
     <div class="logo-mark">
-      <svg viewBox="0 0 40 40" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
-        <!-- Green body/head -->
-        <circle cx="19" cy="23" r="15" fill="#5ea625"/>
-        <!-- Monk's gray face patch -->
-        <ellipse cx="21" cy="21" rx="9" ry="11" fill="#bcc5ce"/>
-        <!-- Green crown over top of gray -->
-        <ellipse cx="18" cy="10" rx="9" ry="7" fill="#5ea625"/>
-        <!-- Eye white -->
-        <circle cx="25" cy="15" r="3.2" fill="#fff"/>
-        <!-- Pupil -->
-        <circle cx="25.6" cy="15.5" r="1.7" fill="#1a1a1a"/>
-        <!-- Eye highlight -->
-        <circle cx="24.7" cy="14.5" r="0.8" fill="#fff"/>
-        <!-- Hooked beak -->
-        <path d="M28 19 Q36 17 32 23 Q36 17 28 22 Z" fill="#d96820"/>
+      <svg viewBox="0 0 44 50" width="52" height="58" xmlns="http://www.w3.org/2000/svg">
+        <!-- Crest: small rounded tuft behind head -->
+        <ellipse cx="24" cy="9" rx="7" ry="9" fill="white"/>
+        <!-- Head: bold round circle -->
+        <circle cx="20" cy="28" r="18" fill="white"/>
+        <!-- Eye: negative space punched through (shows header purple) -->
+        <circle cx="25" cy="24" r="5.5" style="fill:var(--accent)"/>
+        <!-- Eye shine: white dot back in -->
+        <circle cx="26.8" cy="22.2" r="2" fill="white"/>
+        <!-- Hooked beak: parrot's defining feature -->
+        <path d="M34 27 Q45 23 40 33 Q45 22 34 31 Z" fill="white"/>
       </svg>
     </div>
     <div class="logo-wordmark"><span class="logo-thai">Thai</span><span class="logo-snap">Snap</span></div>
