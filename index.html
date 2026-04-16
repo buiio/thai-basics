@@ -275,11 +275,11 @@
 </header>
 
 <nav class="main-tabs" id="mainTabs">
-  <button class="main-tab active" data-tab="consonants">🔤 Consonants</button>
-  <button class="main-tab"        data-tab="vowels">🔡 Vowels</button>
-  <button class="main-tab"        data-tab="tones">🎵 Tones</button>
-  <button class="main-tab"        data-tab="scripts">✍️ Scripts</button>
-  <button class="main-tab"        data-tab="flashcards">📚 Flashcards</button>
+  <button class="main-tab active" data-tab="consonants">Consonants</button>
+  <button class="main-tab"        data-tab="vowels">Vowels</button>
+  <button class="main-tab"        data-tab="tones">Tones</button>
+  <button class="main-tab"        data-tab="scripts">Scripts</button>
+  <button class="main-tab"        data-tab="flashcards">Flashcards</button>
 </nav>
 
 <main>
@@ -430,10 +430,10 @@
 const CONSONANTS = {
   high: [
     { char:'ผ', name:'ผ ผึ้ง',    rtgs:'ph', initial:'ph', final:'–',  ex:'ผึ้ง',   exMeaning:'bee',          exRTGS:'phueng',   emoji:'🐝', img:'thaiweb-1.jpeg' },
-    { char:'ถ', name:'ถ ถุง',    rtgs:'th', initial:'th', final:'t',  ex:'ถุง',    exMeaning:'bag',          exRTGS:'thung',    emoji:'👜' },
+    { char:'ถ', name:'ถ ถุง',    rtgs:'th', initial:'th', final:'t',  ex:'ถุง',    exMeaning:'bag',          exRTGS:'thung',    emoji:'👜', img:'thaiweb-31.jpeg' },
     { char:'ฐ', name:'ฐ ฐาน',    rtgs:'th', initial:'th', final:'t',  ex:'ฐาน',    exMeaning:'base/pedestal',exRTGS:'thaan',    emoji:'🏛️', lessCommon:true },
     { char:'ฉ', name:'ฉ ฉิ่ง',   rtgs:'ch', initial:'ch', final:'–',  ex:'ฉิ่ง',   exMeaning:'cymbals',      exRTGS:'ching',    emoji:'🥁' },
-    { char:'ข', name:'ข ไข่',    rtgs:'kh', initial:'kh', final:'k',  ex:'ไข่',    exMeaning:'egg',          exRTGS:'khay',     emoji:'🥚' },
+    { char:'ข', name:'ข ไข่',    rtgs:'kh', initial:'kh', final:'k',  ex:'ไข่',    exMeaning:'egg',          exRTGS:'khay',     emoji:'🥚', img:'thaiweb-29.jpeg' },
     { char:'ฃ', name:'ฃ ขวด',    rtgs:'kh', initial:'kh', final:'k',  ex:'ขวด',    exMeaning:'bottle',       exRTGS:'khuat',    emoji:'🍶', obsolete:true, img:'thaiweb-25.jpeg' },
     { char:'ฝ', name:'ฝ ฝา',     rtgs:'f',  initial:'f',  final:'–',  ex:'ฝา',     exMeaning:'lid/cover',    exRTGS:'faa',      emoji:'🫙', img:'thaiweb-24.jpeg' },
     { char:'ส', name:'ส เสือ',   rtgs:'s',  initial:'s',  final:'t',  ex:'เสือ',   exMeaning:'tiger',        exRTGS:'suea',     emoji:'🐯', img:'thaiweb-21.mov' },
@@ -467,16 +467,16 @@ const CONSONANTS = {
     { char:'ล', name:'ล ลิง',    rtgs:'l',  initial:'l',  final:'n',  ex:'ลิง',    exMeaning:'monkey',       exRTGS:'ling',     emoji:'🐒', img:'thaiweb-8.mov' },
     { char:'ร', name:'ร เรือ',   rtgs:'r',  initial:'r',  final:'n',  ex:'เรือ',   exMeaning:'boat',         exRTGS:'ruea',     emoji:'🚢' },
     { char:'ย', name:'ย ยักษ์',  rtgs:'y',  initial:'y',  final:'y',  ex:'ยักษ์',  exMeaning:'giant/ogre',   exRTGS:'yak',      emoji:'👹', img:'thaiweb-16.mov' },
-    { char:'ภ', name:'ภ สำเภา',  rtgs:'ph', initial:'ph', final:'p',  ex:'สำเภา',  exMeaning:'junk (boat)',  exRTGS:'samphao',  emoji:'⛵', lessCommon:true },
-    { char:'ฑ', name:'ฑ มณโฑ',   rtgs:'th', initial:'th', final:'t',  ex:'มณโฑ',   exMeaning:'Montho (name)',exRTGS:'monthoo',  emoji:'👸', lessCommon:true },
-    { char:'ฒ', name:'ฒ ผู้เฒ่า', rtgs:'th', initial:'th', final:'t', ex:'ผู้เฒ่า', exMeaning:'elder',        exRTGS:'phuu thao',emoji:'👴', lessCommon:true },
+    { char:'ภ', name:'ภ สำเภา',  rtgs:'ph', initial:'ph', final:'p',  ex:'สำเภา',  exMeaning:'junk (boat)',  exRTGS:'samphaw',  emoji:'⛵', lessCommon:true },
+    { char:'ฑ', name:'ฑ นางมณโฑ', rtgs:'th', initial:'th', final:'t',  ex:'นางมณโฑ', exMeaning:'Montho (name)',exRTGS:'naang monthoo', emoji:'👸', lessCommon:true },
+    { char:'ฒ', name:'ฒ ผู้เฒ่า', rtgs:'th', initial:'th', final:'t', ex:'ผู้เฒ่า', exMeaning:'elder',        exRTGS:'phuu thaw',emoji:'👴', lessCommon:true, img:'thaiweb-32.jpeg' },
     { char:'ธ', name:'ธ ธง',     rtgs:'th', initial:'th', final:'t',  ex:'ธง',     exMeaning:'flag',         exRTGS:'thong',    emoji:'🚩', lessCommon:true },
-    { char:'ฌ', name:'ฌ เฌอ',    rtgs:'ch', initial:'ch', final:'–',  ex:'เฌอ',    exMeaning:'tree',         exRTGS:'choe',     emoji:'🌳', lessCommon:true },
+    { char:'ฌ', name:'ฌ กะเฌอ',  rtgs:'ch', initial:'ch', final:'–',  ex:'กะเฌอ',  exMeaning:'tree',         exRTGS:'kachoe',   emoji:'🌳', lessCommon:true },
     { char:'ฅ', name:'ฅ คน',     rtgs:'kh', initial:'kh', final:'k',  ex:'คน',     exMeaning:'person',       exRTGS:'khon',     emoji:'🧑', lessCommon:true, obsolete:true },
     { char:'ฆ', name:'ฆ ระฆัง',  rtgs:'kh', initial:'kh', final:'k',  ex:'ระฆัง',  exMeaning:'bell',         exRTGS:'rakhaang', emoji:'🔔', lessCommon:true },
     { char:'ณ', name:'ณ เณร',    rtgs:'n',  initial:'n',  final:'n',  ex:'เณร',    exMeaning:'novice monk',  exRTGS:'neen',      emoji:'🧘', lessCommon:true, img:'thaiweb-15.jpeg' },
     { char:'ฬ', name:'ฬ จุฬา',   rtgs:'l',  initial:'l',  final:'n',  ex:'จุฬา',   exMeaning:'kite',         exRTGS:'culaa',   emoji:'🪁', lessCommon:true },
-    { char:'ญ', name:'ญ หญิง',   rtgs:'y',  initial:'y',  final:'n',  ex:'หญิง',   exMeaning:'woman',        exRTGS:'ying',     emoji:'👩', lessCommon:true },
+    { char:'ญ', name:'ญ หญิง',   rtgs:'y',  initial:'y',  final:'n',  ex:'หญิง',   exMeaning:'woman',        exRTGS:'ying',     emoji:'👩', lessCommon:true, img:'thaiweb-30.jpeg' },
   ]
 };
 
