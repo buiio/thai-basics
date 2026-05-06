@@ -139,29 +139,6 @@
     .progress-bar-bg { background:rgba(255,255,255,0.25); border-radius:999px; height:8px; margin-bottom:8px; }
     .progress-bar-fill { background:#fff; border-radius:999px; height:100%; transition:width 0.4s ease; }
     .progress-text { font-size:0.78rem; opacity:0.85; }
-    .fc-header-actions { display:flex; gap:8px; margin-top:10px; }
-    .fc-change-btn { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); color:#fff; font-size:0.75rem; padding:4px 12px; border-radius:999px; cursor:pointer; font-weight:600; }
-    .fc-change-btn:hover { background:rgba(255,255,255,0.3); }
-
-    /* Category select */
-    .cat-select { background:var(--surface); border-radius:var(--radius); padding:28px 24px; box-shadow:var(--shadow); max-width:500px; margin:0 auto; }
-    .cat-select h3 { font-size:1.15rem; font-weight:700; margin-bottom:6px; }
-    .cat-select > p { font-size:0.84rem; color:var(--text-muted); margin-bottom:22px; }
-    .cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
-    .cat-group-title { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:10px; }
-    .cat-option { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; border:2px solid var(--border); cursor:pointer; transition:all 0.15s; margin-bottom:8px; font-size:0.88rem; font-weight:500; }
-    .cat-option:hover { border-color:var(--accent); background:var(--accent-light); }
-    .cat-option input[type="checkbox"] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; flex-shrink:0; }
-    .cat-option.selected { border-color:var(--accent); background:var(--accent-light); color:var(--accent); }
-    .cat-option .cat-tag { font-size:0.68rem; font-weight:700; padding:1px 6px; border-radius:999px; margin-left:auto; }
-    .cat-tag-high { background:var(--high-light); color:var(--high); }
-    .cat-tag-mid  { background:var(--mid-light);  color:var(--mid); }
-    .cat-tag-low  { background:var(--low-light);  color:var(--low); }
-    .cat-tag-vowel{ background:#f3e8ff; color:#6b21a8; }
-    .cat-start-btn { width:100%; padding:14px; border:none; border-radius:999px; background:linear-gradient(135deg,#1e40af,#7c3aed); color:#fff; font-size:1rem; font-weight:700; cursor:pointer; transition:all 0.2s; }
-    .cat-start-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-hover); }
-    .cat-start-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
-    .cat-count { font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:10px; }
 
     /* FC cards */
     .fc-wrapper { perspective:1000px; margin:0 auto 22px; max-width:440px; height:300px; }
@@ -244,7 +221,6 @@
       .consonant-grid { grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:10px; }
       .fc-thai { font-size:2.4rem; } .fc-wrapper { height:270px; }
       .main-tab { font-size:0.78rem; padding:12px 6px; }
-      .cat-grid { grid-template-columns:1fr; }
     }
 
     /* SPEECH */
@@ -413,10 +389,9 @@
   <section class="section" id="tab-flashcards">
     <div class="fc-header">
       <h2>📚 Daily Flashcards</h2>
-      <p id="fcHeaderDesc">20 words per day — choose your study focus below</p>
+      <p id="fcHeaderDesc">20 fresh words per set</p>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
       <div class="progress-text" id="progressText">0 / 20 completed today</div>
-      <div class="fc-header-actions"><button class="fc-change-btn" id="fcChangeBtn" style="display:none" onclick="showCategorySelect()">✏️ Change categories</button></div>
     </div>
     <div id="noTtsFlash" class="no-tts-msg">Thai TTS not available. Try Chrome or Safari.</div>
     <div id="flashcardArea"></div>
@@ -843,6 +818,235 @@ const FLASHCARD_WORDS = [
   { id:'lv50', thai:'ใกล้', rtgs:'klâi',      meaning:'near / close',    emoji:'📍', category:'long-vowel', feature:'ใ◌ special + long /ai/' },
 ];
 
+const EXTRA_HIGH_LONG_WORDS = [
+  ['ถู', 'thuu', 'scrub / wipe', '🧽'],
+  ['สวยงาม', 'suay ngaam', 'beautiful', '✨'],
+  ['เสียงยาว', 'siang yaao', 'long sound', '🔊'],
+  ['ผัวเมีย', 'phua mia', 'husband and wife (impolite)', '👫'],
+  ['โมโห', 'moo hoo', 'angry', '😡'],
+  ['ภาษา', 'phaa-saa', 'language', '💬'],
+  ['เมษา', 'mee-saa', 'April', '🗓️'],
+  ['เวียนหัว', 'wian hua', 'dizzy', '😵'],
+  ['เขียนไทย', 'khian thai', 'write Thai', '✍️'],
+  ['ไฟฉาย', 'fai chaai', 'flashlight', '🔦'],
+  ['ภูเขาไฟ', 'phuu khao fai', 'volcano', '🌋'],
+  ['ยาง', 'yaang', 'rubber', '🛞'],
+  ['สวย', 'suay', 'beautiful', '💄'],
+  ['สอน', 'son', 'teach', '🏫'],
+  ['ผัว', 'phua', 'husband (impolite)', '👨'],
+  ['เผา', 'phao', 'burn', '🔥'],
+  ['ขา', 'khaa', 'leg', '🦵'],
+  ['ขำ', 'kham', 'laugh hard', '😂'],
+  ['ผืน', 'phuen', 'classifier for towels / cloth', '🧺'],
+  ['หวง', 'huang', 'possessive / jealous', '🫶'],
+  ['ผี', 'phii', 'ghost', '👻'],
+  ['เสา', 'sao', 'pillar', '🏛️'],
+  ['หู', 'huu', 'ear', '👂'],
+  ['ใส', 'sai', 'clear', '💧'],
+  ['เสือ', 'suea', 'tiger', '🐅'],
+  ['หัว', 'hua', 'head', '🗣️'],
+  ['ฝา', 'faa', 'lid', '🫙'],
+  ['เสีย', 'sia', 'dead / broken / spoiled', '💔'],
+  ['สี', 'sii', 'colour', '🎨'],
+  ['ถาม', 'thaam', 'ask', '❓'],
+  ['สาม', 'saam', '3', '3️⃣'],
+  ['ฐาน', 'thaan', 'base / foundation', '🏗️'],
+  ['สูง', 'suung', 'tall', '📏'],
+  ['แขน', 'khaen', 'arm', '💪'],
+  ['ผอม', 'phom', 'slim', '🧍'],
+  ['แถว', 'thaeo', 'row', '📋'],
+  ['เขิน', 'khoen', 'shy / embarrassed', '😊'],
+  ['เฉย', 'choei', 'indifferent', '😐'],
+  ['เฉียง', 'chiang', 'diagonal / slanted 45 degrees', '📐'],
+  ['เหมือน', 'muean', 'similar', '🔄'],
+  ['ผ่าน', 'phaan', 'pass', '🚶'],
+  ['ข้าม', 'khaam', 'cross', '↔️'],
+  ['เข้า', 'khao', 'enter', '🚪'],
+  ['เขา', 'khao', 'he / she', '👤'],
+  ['สาย', 'saai', 'late', '⏰'],
+  ['เหนื่อย', 'nueai', 'tired', '😴'],
+  ['หวาน', 'waan', 'sweet', '🍬'],
+  ['ห่วง', 'huang', 'worried', '😟'],
+  ['เฉา', 'chao', 'wilted', '🥀'],
+  ['หา', 'haa', 'look for', '🔍'],
+  ['ถ้า', 'thaa', 'if', '🤔'],
+  ['ไข้', 'khai', 'fever', '🌡️'],
+  ['ผู้', 'phuu', 'person', '🧑'],
+  ['เช้า', 'chao', 'morning', '🌅'],
+  ['ห้อง', 'hong', 'room', '🏠'],
+  ['เสื้อ', 'suea', 'shirt / blouse', '👕'],
+  ['ข่าว', 'khaao', 'news', '📰'],
+  ['ข้าว', 'khaao', 'rice', '🍚'],
+  ['ขาว', 'khaao', 'white', '⬜'],
+  ['ฝูง', 'fuung', 'group / herd of animals', '🐾'],
+  ['โสม', 'soom', 'ginseng', '🌿'],
+  ['ห่อ', 'hor', 'wrap / package', '📦'],
+  ['ใส่', 'sai', 'wear / put in', '👕'],
+  ['ห้าม', 'haam', 'forbid', '🚫'],
+  ['ถ้วย', 'thuai', 'cup / bowl', '🥣'],
+  ['ให้', 'hai', 'give', '🎁'],
+  ['สีเขียว', 'sii khiao', 'green', '🟢'],
+  ['ใส่ไข่', 'sai khai', 'embellish / exaggerate; lit. add egg', '🥚'],
+  ['ผ่านเขื่อน', 'phaan khuean', 'pass by a dam', '🌊'],
+  ['ฝ่ายข่าว', 'faai khaao', 'news department', '📰'],
+  ['ข้างห้อง', 'khaang hong', 'next room / next door', '🚪'],
+  ['สายไฟ', 'saai fai', 'electric wire', '🔌'],
+  ['เผื่อว่า', 'phuea waa', 'in case', '☂️'],
+  ['เห่าเรื่อย', 'hao rueai', 'bark continuously', '🐕'],
+  ['แห้งแล้ง', 'haeng laeng', 'dry / drought-stricken', '🏜️'],
+  ['ส้อมช้อน', 'som chon', 'fork and spoon', '🍴'],
+  ['ซ่อม', 'som', 'fix', '🔧'],
+  ['ข้างล่าง', 'khaang laang', 'below / downstairs', '⬇️'],
+  ['ค่อนข้าง', 'khon khaang', 'fairly / rather', '📊'],
+];
+
+EXTRA_HIGH_LONG_WORDS.forEach(([thai, rtgs, meaning, emoji], i) => {
+  const id = String(i + 1).padStart(2, '0');
+  FLASHCARD_WORDS.push(
+    { id:`xh${id}`, thai, rtgs, meaning, emoji, category:'high', vowelLen:'long', feature:'High class set · long vowel' },
+    { id:`xlv${id}`, thai, rtgs, meaning, emoji, category:'long-vowel', feature:'Long vowel vocabulary' },
+  );
+});
+
+const H_LEADING_LOW_CLASS_WORDS = [
+  ['เหล้า', 'lao', 'liquor', '🍶'],
+  ['หน้า', 'naa', 'face / page / in front', '😊'],
+  ['ไหม้', 'mai', 'to burn', '🔥'],
+  ['หนี้', 'nii', 'debt', '💸'],
+  ['หญ้า', 'yaa', 'grass', '🌱'],
+  ['ไหว้', 'wai', 'to wai / pay respect', '🙏'],
+  ['หมา', 'maa', 'dog', '🐕'],
+  ['เหนือ', 'nuea', 'north', '🧭'],
+  ['หวี', 'wii', 'comb / bunch', '🍌'],
+  ['หมอ', 'mor', 'doctor', '🩺'],
+  ['หม้อ', 'mor', 'pot', '🍲'],
+  ['หนาว', 'naao', 'cold', '🥶'],
+  ['ไหว', 'wai', 'can bear / able to', '💪'],
+  ['เหมือน', 'muean', 'similar', '🔄'],
+  ['หลาย', 'laai', 'many', '💯'],
+  ['ที่ไหน', 'thii nai', 'where', '📍'],
+  ['ไหม', 'mai', 'question particle', '❓'],
+  ['ใหม่', 'mai', 'new', '✨'],
+  ['หล่อ', 'lor', 'handsome', '😎'],
+  ['เหยี่ยว', 'yiao', 'hawk / eagle', '🦅'],
+  ['ใหญ่', 'yai', 'big', '📦'],
+  ['เหนื่อย', 'nueai', 'tired', '😴'],
+  ['ของหวาน', 'khong waan', 'dessert', '🍰'],
+  ['หนีหมา', 'nii maa', 'walk away from dog', '🚶'],
+  ['สาวเหนือ', 'saao nuea', 'northern girl', '👩'],
+  ['เมื่อไหร่', 'muea rai', 'when', '🕒'],
+  ['เท่าไหร่', 'thao rai', 'how much', '💵'],
+  ['หลาน', 'laan', 'grandchild / niece / nephew', '👧'],
+  ['ข้าวเหนียว', 'khaao niao', 'sticky rice', '🍚'],
+  ['สีเหลือง', 'sii lueang', 'yellow', '🟡'],
+  ['หอย', 'hoi', 'oyster / shellfish', '🦪'],
+  ['หลวม', 'luam', 'loose', '👕'],
+  ['หมื่นสี่', 'muen sii', '14,000', '🔢'],
+  ['ถ่าน', 'thaan', 'battery / charcoal', '🔋'],
+  ['ง่วง', 'nguang', 'sleepy', '🥱'],
+  ['เนื้อร้าย', 'nuea raai', 'cancer', '🏥'],
+  ['หอ', 'hor', 'dorm', '🏢'],
+  ['หมู่นี้', 'muu nii', 'recently / these past 2-3 weeks', '🗓️'],
+  ['หรือ', 'rue', 'or', '🔀'],
+];
+
+H_LEADING_LOW_CLASS_WORDS.forEach(([thai, rtgs, meaning, emoji], i) => {
+  const id = String(i + 1).padStart(2, '0');
+  FLASHCARD_WORDS.push(
+    { id:`hlc${id}`, thai, rtgs, meaning, emoji, category:'high', vowelLen:'long', feature:'ห นำ / high class effect · long vowel' },
+    { id:`hlclv${id}`, thai, rtgs, meaning, emoji, category:'long-vowel', feature:'ห นำ vocabulary · long vowel' },
+  );
+});
+
+const MID_LONG_ONLY_WORDS = [
+  ['เบา', 'bao', 'lightweight', '🪶'],
+  ['บัว', 'bua', 'lotus', '🪷'],
+  ['ปี', 'pii', 'year', '📅'],
+  ['ดี', 'dii', 'good', '👍'],
+  ['เดา', 'dao', 'guess', '🤔'],
+  ['ดำ', 'dam', 'black', '⬛'],
+  ['ตี', 'tii', 'hit', '🥊'],
+  ['เตา', 'tao', 'stove', '🔥'],
+  ['ตำ', 'tam', 'pound / som tam', '🥗'],
+  ['ตัว', 'tua', 'classifier / body', '🧍'],
+  ['จอ', 'jor', 'screen', '📱'],
+  ['เจอ', 'joe', 'meet', '🤝'],
+  ['เกา', 'gao', 'scratch an itch', '💅'],
+  ['กำ', 'gam', 'grasp / grip tightly', '✊'],
+  ['ป่า', 'paa', 'forest', '🌳'],
+  ['ต่อ', 'tor', 'connect / continue', '🔗'],
+  ['ได้', 'dai', 'can', '✅'],
+  ['ป้า', 'paa', 'aunt', '👩'],
+  ['ไผ่', 'phai', 'bamboo', '🎋'],
+  ['ไพ่', 'phai', 'playing cards / poker', '🃏'],
+  ['ดู', 'duu', 'look / watch', '👀'],
+  ['ไป', 'pai', 'go', '➡️'],
+  ['จำ', 'jam', 'remember', '🧠'],
+  ['จำได้ไหม', 'jam dai mai', 'do you remember?', '❓'],
+  ['เอา', 'ao', 'want / take', '✋'],
+  ['เอง', 'eeng', 'self / by oneself', '💁'],
+  ['ใต้', 'tai', 'below / south', '⬇️'],
+  ['อ่าน', 'aan', 'read', '📖'],
+  ['เต่า', 'tao', 'turtle', '🐢'],
+  ['เก่า', 'gao', 'old', '🏚️'],
+  ['อ้วน', 'uan', 'fat', '🧍'],
+  ['เบื่อ', 'buea', 'bored', '😪'],
+  ['ดีใจ', 'dii jai', 'happy', '😄'],
+  ['ตามใจ', 'taam jai', 'up to you / as you like', '🤷'],
+  ['เอาใจใส่', 'ao jai sai', 'attentive / careful', '🤲'],
+  ['จู้จี้', 'juu jii', 'picky / fussy', '🧐'],
+  ['บู้บี้', 'buu bii', 'bully (slang)', '😠'],
+  ['เก้าอี้', 'gao ii', 'chair', '🪑'],
+  ['ตู้เตี้ย', 'tuu tia', 'low cabinet', '🗄️'],
+  ['ต้องแก้', 'tong gae', 'must fix', '🔧'],
+  ['จองก่อน', 'jong gon', 'book first', '📌'],
+  ['จ่ายก่อน', 'jaai gon', 'pay before', '💳'],
+  ['อาหาร', 'aa-haan', 'food', '🍜'],
+  ['เบื่ออาหาร', 'buea aa-haan', 'loss of appetite', '🍽️'],
+  ['แกงไก่', 'gaeng gai', 'chicken curry', '🍛'],
+  ['ไก่ย่าง', 'gai yaang', 'grilled chicken', '🍗'],
+  ['กาแฟ', 'gaa-fae', 'coffee', '☕'],
+  ['น้ำตาล', 'nam taan', 'sugar', '🍬'],
+  ['เต้าหู้', 'tao huu', 'tofu', '⬜'],
+  ['ตัวอ้วน', 'tua uan', 'fat body', '🧍'],
+  ['แต่งตัวสวย', 'taeng tua suay', 'dress beautifully', '👗'],
+  ['ท้องเดินด้วย', 'thong doen duay', 'also has diarrhea', '🚽'],
+  ['ดูแล', 'duu lae', 'take care of', '🤝'],
+  ['การบ้าน', 'gaan baan', 'homework', '📚'],
+  ['อ้างบ่อย', 'aang boi', 'often makes excuses', '💬'],
+  ['ปีนเขา', 'piin khao', 'climb a mountain', '⛰️'],
+  ['อีสาน', 'ii-saan', 'Isan', '🗺️'],
+  ['เดือนก่อน', 'duean gon', 'month before / last month', '🗓️'],
+  ['ตอนบ่าย', 'ton baai', 'afternoon', '☀️'],
+  ['บางที', 'baang thii', 'sometimes', '🔁'],
+  ['เมื่อกี้นี้', 'muea gii nii', 'just now', '⏱️'],
+  ['กี่โมงแล้ว', 'gii moong laeo', 'what time is it?', '🕒'],
+  ['ตานี', 'taa nii', 'banana spirit', '🍌'],
+  ['อำเภอ', 'am-phoe', 'district', '🏘️'],
+  ['กีฬา', 'gii-laa', 'sports', '⚽'],
+  ['ต่อใหม่', 'tor mai', 'renew', '🔄'],
+  ['ต่อว่า', 'tor waa', 'scold / blame', '🗣️'],
+  ['ต้องการ', 'tong gaan', 'need', '📌'],
+  ['ให้ทาน', 'hai thaan', 'give alms / donate', '🙏'],
+  ['ต้องสู้', 'tong suu', 'must fight / keep striving', '💪'],
+  ['เจ้าหนี้', 'jao nii', 'creditor', '💸'],
+  ['ค่าโดยสาร', 'khaa dooi saan', 'fare', '🎫'],
+];
+
+MID_LONG_ONLY_WORDS.forEach(([thai, rtgs, meaning, emoji], i) => {
+  const id = String(i + 1).padStart(2, '0');
+  FLASHCARD_WORDS.push({
+    id:`ml${id}`,
+    thai,
+    rtgs,
+    meaning,
+    emoji,
+    category:'mid-long-only',
+    vowelLen:'long',
+    feature:'Mid class + long vowel vocabulary',
+  });
+});
+
 // ══════════════════════════════════════════════════════════════════
 //  SPEECH
 // ══════════════════════════════════════════════════════════════════
@@ -1119,23 +1323,47 @@ const LS_DATE    = 'thai_fc_date';
 const LS_WORDS   = 'thai_fc_daily_words';
 const LS_LEARNED = 'thai_fc_learned';
 const LS_POS     = 'thai_fc_pos';
-const LS_CATS    = 'thai_fc_cats';
-
-const CAT_LABELS = {
-  'high':        { label:'⬆ High Class', tag:'cat-tag-high', desc:'11 consonants' },
-  'mid':         { label:'➡ Mid Class',  tag:'cat-tag-mid',  desc:'9 consonants' },
-  'low':         { label:'⬇ Low Class',  tag:'cat-tag-low',  desc:'24 consonants' },
-  'short-vowel': { label:'Short Vowels', tag:'cat-tag-vowel', desc:'สระเสียงสั้น' },
-  'long-vowel':  { label:'Long Vowels',  tag:'cat-tag-vowel', desc:'สระเสียงยาว' },
-};
+const LS_SEEN    = 'thai_fc_seen_history';
+const LS_REVIEW  = 'thai_fc_review_again';
 
 let dailyWords       = [];
 let learnedWords     = new Set();
 let currentPos       = 0;
 let isFlipped        = false;
-let selectedCategories = ['high'];
 
-function today() { return new Date().toISOString().slice(0,10); }
+function today() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function daysBetween(a, b) {
+  const dayMs = 24 * 60 * 60 * 1000;
+  return Math.floor((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / dayMs);
+}
+
+function loadDatedMap(key) {
+  try { return JSON.parse(localStorage.getItem(key) || '{}') || {}; }
+  catch { return {}; }
+}
+
+function saveDatedMap(key, map) {
+  localStorage.setItem(key, JSON.stringify(map));
+}
+
+function pruneDatedMap(map, maxAgeDays = 7) {
+  const now = today();
+  Object.keys(map).forEach(k => {
+    if (daysBetween(map[k], now) >= maxAgeDays) delete map[k];
+  });
+  return map;
+}
+
+function wordThaiById(id) {
+  return getWordById(id)?.thai;
+}
 
 function seededShuffle(arr, seed) {
   const a = [...arr]; let h = 0;
@@ -1147,51 +1375,55 @@ function seededShuffle(arr, seed) {
   return a;
 }
 
-const CONSONANT_CATS = ['high','mid','low'];
-const VOWEL_CATS     = ['short-vowel','long-vowel'];
-
-function getFilteredPool(cats) {
-  const cCats = cats.filter(c => CONSONANT_CATS.includes(c));
-  const vCats = cats.filter(c => VOWEL_CATS.includes(c));
-  if (cCats.length > 0 && vCats.length > 0) {
-    // AND logic: consonant words must also match the selected vowel length
-    const lens = vCats.map(c => c === 'short-vowel' ? 'short' : 'long');
-    const consonantFiltered = FLASHCARD_WORDS.filter(w => cCats.includes(w.category) && lens.includes(w.vowelLen));
-    const vowelDedicated    = FLASHCARD_WORDS.filter(w => vCats.includes(w.category));
-    const seen = new Set();
-    return [...consonantFiltered, ...vowelDedicated].filter(w => seen.has(w.id) ? false : seen.add(w.id));
-  }
-  return FLASHCARD_WORDS.filter(w => cats.includes(w.category));
+function uniqueByThai(words) {
+  const seen = new Set();
+  return words.filter(w => seen.has(w.thai) ? false : seen.add(w.thai));
 }
 
-function generateDailyWords(cats) {
-  const pool = getFilteredPool(cats).map(w => w.id);
+function getAllFlashcardPool() {
+  return uniqueByThai(FLASHCARD_WORDS);
+}
+
+function generateDailyWords() {
+  const seen = pruneDatedMap(loadDatedMap(LS_SEEN));
+  const reviewAgain = pruneDatedMap(loadDatedMap(LS_REVIEW));
+  saveDatedMap(LS_SEEN, seen);
+  saveDatedMap(LS_REVIEW, reviewAgain);
+
+  const pool = getAllFlashcardPool()
+    .filter(w => !seen[w.thai] || reviewAgain[w.thai])
+    .map(w => w.id);
   if (!pool.length) return [];
-  const seed = today() + cats.slice().sort().join('+');
+  const sessionNo = parseInt(localStorage.getItem('thai_fc_session_no') || '0', 10) + 1;
+  localStorage.setItem('thai_fc_session_no', String(sessionNo));
+  const seed = today() + 'all-flashcards' + sessionNo;
   const shuffled = seededShuffle(pool, seed);
   return shuffled.slice(0, DAILY_COUNT);
 }
 
 function getWordById(id) { return FLASHCARD_WORDS.find(w => w.id === id); }
 function countLearnedToday() { return dailyWords.filter(id => learnedWords.has(id)).length; }
+function markWordSeen(word) {
+  const reviewAgain = pruneDatedMap(loadDatedMap(LS_REVIEW));
+  if (reviewAgain[word.thai]) return;
+  const seen = pruneDatedMap(loadDatedMap(LS_SEEN));
+  seen[word.thai] = today();
+  saveDatedMap(LS_SEEN, seen);
+}
 function saveProgress() {
   localStorage.setItem(LS_LEARNED, JSON.stringify([...learnedWords]));
   localStorage.setItem(LS_POS, String(currentPos));
 }
 
 function updateHeader() {
-  const cats = selectedCategories.map(c => CAT_LABELS[c]?.label || c).join(', ');
-  document.getElementById('fcHeaderDesc').textContent = `20 words · ${cats}`;
-  document.getElementById('fcChangeBtn').style.display = 'inline-block';
+  document.getElementById('fcHeaderDesc').textContent = '20 fresh words per set';
 }
 
-function startSession(cats) {
-  selectedCategories = cats;
-  localStorage.setItem(LS_CATS, JSON.stringify(cats));
+function startSession() {
   localStorage.setItem(LS_DATE, today());
   learnedWords = new Set();
   localStorage.setItem(LS_LEARNED, '[]');
-  dailyWords = generateDailyWords(cats);
+  dailyWords = generateDailyWords();
   currentPos = 0;
   localStorage.setItem(LS_WORDS, JSON.stringify(dailyWords));
   localStorage.setItem(LS_POS, '0');
@@ -1199,68 +1431,8 @@ function startSession(cats) {
   renderFlashcard();
 }
 
-function showCategorySelect() {
-  const saved = JSON.parse(localStorage.getItem(LS_CATS) || '["high"]');
-  const area = document.getElementById('flashcardArea');
-  document.getElementById('fcChangeBtn').style.display = 'none';
-  const countBycat = {};
-  FLASHCARD_WORDS.forEach(w => { countBycat[w.category] = (countBycat[w.category]||0)+1; });
-  area.innerHTML = `
-    <div class="cat-select">
-      <h3>What would you like to study?</h3>
-      <p>Select one or more categories — 20 cards will be drawn from your selection.</p>
-      <div class="cat-grid">
-        <div>
-          <div class="cat-group-title">Consonants</div>
-          ${['high','mid','low'].map(cat => `
-            <label class="cat-option ${saved.includes(cat)?'selected':''}">
-              <input type="checkbox" value="${cat}" ${saved.includes(cat)?'checked':''}>
-              ${CAT_LABELS[cat].label}
-              <span class="cat-tag ${CAT_LABELS[cat].tag}">${countBycat[cat]||0} words</span>
-            </label>`).join('')}
-        </div>
-        <div>
-          <div class="cat-group-title">Vowels</div>
-          ${['short-vowel','long-vowel'].map(cat => `
-            <label class="cat-option ${saved.includes(cat)?'selected':''}">
-              <input type="checkbox" value="${cat}" ${saved.includes(cat)?'checked':''}>
-              ${CAT_LABELS[cat].label}
-              <span class="cat-tag ${CAT_LABELS[cat].tag}">${countBycat[cat]||0} words</span>
-            </label>`).join('')}
-        </div>
-      </div>
-      <button class="cat-start-btn" id="catStartBtn">▶ Start Session</button>
-      <div class="cat-count" id="catCount"></div>
-    </div>`;
-
-  // live checkbox styling + count
-  const checkboxes = area.querySelectorAll('input[type="checkbox"]');
-  const startBtn = area.querySelector('#catStartBtn');
-  const countEl  = area.querySelector('#catCount');
-  function updateCount() {
-    const selected = [...checkboxes].filter(cb => cb.checked).map(cb => cb.value);
-    const total = getFilteredPool(selected).length;
-    const andNote = selected.some(c=>CONSONANT_CATS.includes(c)) && selected.some(c=>VOWEL_CATS.includes(c))
-      ? ' (AND filter applied)' : '';
-    countEl.textContent = total ? `${total} words available → drawing ${Math.min(total,DAILY_COUNT)}${andNote}` : 'Select at least one category';
-    startBtn.disabled = selected.length === 0;
-    checkboxes.forEach(cb => {
-      cb.closest('.cat-option').classList.toggle('selected', cb.checked);
-    });
-  }
-  checkboxes.forEach(cb => cb.addEventListener('change', updateCount));
-  updateCount();
-
-  startBtn.addEventListener('click', () => {
-    const cats = [...checkboxes].filter(cb => cb.checked).map(cb => cb.value);
-    if (cats.length) startSession(cats);
-  });
-}
-
 function initFlashcards() {
   const savedDate = localStorage.getItem(LS_DATE);
-  const savedCats = JSON.parse(localStorage.getItem(LS_CATS) || '["high"]');
-  selectedCategories = savedCats;
   learnedWords = new Set(JSON.parse(localStorage.getItem(LS_LEARNED) || '[]'));
   if (savedDate === today()) {
     const stored = JSON.parse(localStorage.getItem(LS_WORDS) || '[]');
@@ -1272,32 +1444,42 @@ function initFlashcards() {
       return;
     }
   }
-  showCategorySelect();
+  startSession();
 }
 
 function renderFlashcard() {
   const area = document.getElementById('flashcardArea');
   const learnedToday = countLearnedToday();
-  const pct = Math.round((learnedToday / DAILY_COUNT) * 100);
+  const sessionTotal = dailyWords.length || DAILY_COUNT;
+  const pct = Math.round((learnedToday / sessionTotal) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${learnedToday} / ${DAILY_COUNT} completed today`;
+  document.getElementById('progressText').textContent = `${learnedToday} / ${sessionTotal} completed in this set`;
 
-  if (learnedToday >= DAILY_COUNT) {
+  if (!dailyWords.length) {
+    area.innerHTML = `
+      <div class="session-complete">
+        <div class="big-emoji">✓</div>
+        <h3>No Fresh Cards</h3>
+        <p>Everything was already shown in the last 7 days. Cards marked “Review again” can still appear.</p>
+        <div class="btn-group">
+          <button class="btn-restart" id="newSessionBtn" style="background:var(--low-light);color:var(--low);border-color:var(--low-mid)">↻ Check Again</button>
+        </div>
+      </div>`;
+    document.getElementById('newSessionBtn').addEventListener('click', startSession);
+    return;
+  }
+
+  if (learnedToday >= dailyWords.length) {
     area.innerHTML = `
       <div class="session-complete">
         <div class="big-emoji">🎉</div>
         <h3>Session Complete!</h3>
-        <p>You've reviewed all ${DAILY_COUNT} cards for today. Great work!</p>
+        <p>You've reviewed all ${dailyWords.length} cards in this session. Great work!</p>
         <div class="btn-group">
-          <button class="btn-restart" id="restartBtn">↺ Restart Same Session</button>
-          <button class="btn-restart" id="newSessionBtn" style="background:var(--low-light);color:var(--low);border-color:var(--low-mid)">✏️ New Session (change categories)</button>
+          <button class="btn-restart" id="newSessionBtn">Next Fresh Set</button>
         </div>
       </div>`;
-    document.getElementById('restartBtn').addEventListener('click', () => {
-      dailyWords.forEach(id => learnedWords.delete(id));
-      currentPos = 0; saveProgress(); renderFlashcard();
-    });
-    document.getElementById('newSessionBtn').addEventListener('click', showCategorySelect);
+    document.getElementById('newSessionBtn').addEventListener('click', startSession);
     return;
   }
 
@@ -1306,6 +1488,7 @@ function renderFlashcard() {
 
   const word = getWordById(dailyWords[currentPos]);
   if (!word) return;
+  markWordSeen(word);
   isFlipped = false;
 
   area.innerHTML = `
@@ -1345,9 +1528,21 @@ function renderFlashcard() {
     setTimeout(() => document.getElementById('btnSpeak')?.classList.remove('speaking'), 900);
   });
   document.getElementById('btnKnown').addEventListener('click', () => {
+    const reviewAgain = pruneDatedMap(loadDatedMap(LS_REVIEW));
+    delete reviewAgain[word.thai];
+    saveDatedMap(LS_REVIEW, reviewAgain);
+    const seen = pruneDatedMap(loadDatedMap(LS_SEEN));
+    seen[word.thai] = today();
+    saveDatedMap(LS_SEEN, seen);
     learnedWords.add(word.id); saveProgress(); renderFlashcard();
   });
   document.getElementById('btnReview').addEventListener('click', () => {
+    const reviewAgain = pruneDatedMap(loadDatedMap(LS_REVIEW));
+    reviewAgain[word.thai] = today();
+    saveDatedMap(LS_REVIEW, reviewAgain);
+    const seen = pruneDatedMap(loadDatedMap(LS_SEEN));
+    delete seen[word.thai];
+    saveDatedMap(LS_SEEN, seen);
     learnedWords.delete(word.id); saveProgress();
     currentPos = (currentPos+1) % dailyWords.length; saveProgress(); renderFlashcard();
   });
